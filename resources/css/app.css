@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ── Base ── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f6f1eb;
+    color: #333;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f6f1eb; }
+::-webkit-scrollbar-thumb { background: #c0a07c; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7a4b2b; }
+
+/* ── Pagination (Laravel default override) ── */
+nav[aria-label="Pagination Navigation"] {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.pagination {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.pagination li a,
+.pagination li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 13px;
+    text-decoration: none;
+    background: white;
+    color: #7a4b2b;
+    border: 1px solid #e8e0d8;
+    transition: 0.2s;
+}
+.pagination li.active span,
+.pagination li span[aria-current="page"] {
+    background: #7a4b2b;
+    color: white;
+    border-color: #7a4b2b;
+}
+.pagination li a:hover {
+    background: #fef3ec;
+    border-color: #7a4b2b;
+}
+
+/* ── Animations ── */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+@keyframes pulse {
+    0%   { transform: scale(1); opacity: 0.6; }
+    70%  { transform: scale(1.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fadeInUp { animation: fadeInUp 0.5s ease forwards; }
+
+/* ── Utility ── */
+.font-serif { font-family: 'Playfair Display', serif; }
+.text-bakery { color: #7a4b2b; }
+.bg-bakery  { background-color: #7a4b2b; }
