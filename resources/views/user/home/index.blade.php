@@ -5,25 +5,25 @@
 @section('content')
 
 {{-- HERO --}}
-<section class="relative h-[90vh] bg-cover bg-center flex items-center justify-center overflow-hidden"
+<section class="relative min-h-[70vh] md:min-h-[90vh] bg-cover bg-center flex items-center justify-center overflow-hidden"
          style="background-image: url('https://images.unsplash.com/photo-1608198093002-ad4e005484ec')">
     <div class="absolute inset-0 bg-[#fff5eb]/85 backdrop-blur-sm"></div>
 
     {{-- Floating Images --}}
     <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
-         class="absolute left-20 bottom-20 w-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Roti" style="animation-duration:4s">
+         class="absolute left-20 bottom-20 w-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Roti" style="animation-duration:4s" loading="lazy">
     <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350"
-         class="absolute right-24 top-28 w-44 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Kue" style="animation-duration:5s;animation-delay:0.5s">
+         class="absolute right-24 top-28 w-44 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
 
-    <div class="relative bg-white/92 p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10">
-        <span class="text-xs tracking-widest text-[#7a4b2b] font-medium">✦ Resep Rahasia Sejak 1990 ✦</span>
-        <h1 class="playfair text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">Freshly Baked,<br>Just for You!</h1>
-        <p class="text-gray-500 text-sm mb-8 leading-relaxed">Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.</p>
-        <div class="flex gap-3 justify-center flex-wrap">
-            <a href="{{ route('products.index') }}" class="bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
+    <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
+        <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">✦ Resep Rahasia Sejak 1990 ✦</span>
+        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">Freshly Baked,<br>Just for You!</h1>
+        <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <a href="{{ route('products.index') }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
                 Pesan Sekarang
             </a>
-            <a href="{{ route('products.index') }}" class="border-2 border-[#7a4b2b] text-[#7a4b2b] px-8 py-3 rounded-full hover:bg-[#7a4b2b] hover:text-white transition-all text-sm font-medium">
+            <a href="{{ route('products.index') }}" class="w-full sm:w-auto border-2 border-[#7a4b2b] text-[#7a4b2b] px-8 py-3 rounded-full hover:bg-[#7a4b2b] hover:text-white transition-all text-sm font-medium">
                 Lihat Menu
             </a>
         </div>
@@ -115,19 +115,19 @@
 </section>
 
 {{-- GALLERY --}}
-<section class="max-w-7xl mx-auto px-6 pb-20" id="galeri">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 pb-20" id="galeri">
     <div class="text-center mb-10">
         <div class="text-xs tracking-widest text-[#7a4b2b] uppercase mb-2">— Momen Manis —</div>
-        <h2 class="playfair text-4xl text-[#4b2e1e]">Galeri Kami</h2>
+        <h2 class="playfair text-3xl md:text-4xl text-[#4b2e1e]">Galeri Kami</h2>
     </div>
-    <div class="grid grid-cols-3 gap-4 h-[500px]">
-        <div class="row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer">
-            <img src="https://images.unsplash.com/photo-1606788075761-7fbd1f6f04d2?w=600" alt="Dapur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-auto md:h-[500px]">
+        <div class="col-span-2 md:col-span-1 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer h-[200px] md:h-auto">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Dapur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
             <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">Dapur Kami</div>
         </div>
         @foreach([['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500','Artisan Bread'],['https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500','Custom Cake'],['https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500','Sweet Pastry'],['https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500','Cinnamon Roll']] as $img)
-        <div class="relative rounded-2xl overflow-hidden group cursor-pointer">
-            <img src="{{ $img[0] }}" alt="{{ $img[1] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-[150px] md:h-auto">
+            <img src="{{ $img[0] }}" alt="{{ $img[1] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
             <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $img[1] }}</div>
         </div>
         @endforeach
@@ -138,7 +138,7 @@
 <section class="bg-white py-20 px-6" id="tentang">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
         <div class="md:w-2/5">
-            <img src="https://images.unsplash.com/photo-1606788075761-7fbd1f6f04d2?w=700" alt="Bakery"
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700" alt="Bakery"
                  class="w-full h-[450px] object-cover rounded-2xl shadow-xl">
         </div>
         <div class="md:w-3/5">
@@ -226,10 +226,10 @@
             <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
                 <button @click="open = open === {{ $i }} ? null : {{ $i }}"
                         class="w-full px-6 py-5 flex justify-between items-center text-left font-medium text-[#4b2e1e] text-sm hover:bg-[#fef9f5] transition-colors">
-                    {{ $faq[0] }}
-                    <span class="text-[#7a4b2b] text-xl transition-transform" :class="open === {{ $i }} ? 'rotate-45' : ''">+</span>
+                    <span class="pr-4">{{ $faq[0] }}</span>
+                    <span class="text-[#7a4b2b] text-xl transition-transform flex-shrink-0" :class="open === {{ $i }} ? 'rotate-45' : ''">+</span>
                 </button>
-                <div x-show="open === {{ $i }}" x-collapse class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+                <div x-show="open === {{ $i }}" x-transition.opacity.duration.300ms class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">
                     {{ $faq[1] }}
                 </div>
             </div>

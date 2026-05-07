@@ -13,11 +13,15 @@ body { font-family: 'Poppins', sans-serif; }
 .playfair { font-family: 'Playfair Display', serif; }
 </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50" x-data="{ sidebarOpen: false }">
 
 <div class="flex h-screen overflow-hidden">
+    {{-- Sidebar Background Overlay --}}
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" x-transition.opacity class="fixed inset-0 bg-black/50 z-40 md:hidden" style="display: none;"></div>
+
     {{-- Sidebar --}}
-    <aside class="w-64 bg-[#4b2e1e] text-white flex flex-col flex-shrink-0">
+    <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-[#4b2e1e] text-white flex flex-col flex-shrink-0 transition-transform duration-300 md:relative md:translate-x-0"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="p-6 border-b border-white/10">
             <div class="playfair text-xl">🎂 Aziziscake</div>
             <div class="text-xs text-white/50 mt-1">Admin Panel</div>
@@ -66,14 +70,19 @@ body { font-family: 'Poppins', sans-serif; }
     </aside>
 
     {{-- Main Content --}}
-    <main class="flex-1 overflow-y-auto">
+    <main class="flex-1 overflow-y-auto w-full">
         {{-- Top Bar --}}
-        <div class="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-            <div>
-                <h1 class="font-semibold text-gray-800">@yield('title', 'Dashboard')</h1>
-                <p class="text-xs text-gray-500 mt-0.5">@yield('subtitle', 'Selamat datang di panel admin Aziziscake')</p>
+        <div class="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 md:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <button @click="sidebarOpen = !sidebarOpen" class="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div>
+                    <h1 class="font-semibold text-gray-800 text-lg md:text-base line-clamp-1">@yield('title', 'Dashboard')</h1>
+                    <p class="hidden sm:block text-xs text-gray-500 mt-0.5">@yield('subtitle', 'Selamat datang di panel admin Aziziscake')</p>
+                </div>
             </div>
-            <div class="flex items-center gap-3 text-sm text-gray-500">
+            <div class="hidden sm:flex items-center gap-3 text-sm text-gray-500">
                 <span>{{ now()->format('l, d F Y') }}</span>
             </div>
         </div>
@@ -90,7 +99,7 @@ body { font-family: 'Poppins', sans-serif; }
         </div>
         @endif
 
-        <div class="p-8">
+        <div class="p-4 md:p-8">
             @yield('content')
         </div>
     </main>
