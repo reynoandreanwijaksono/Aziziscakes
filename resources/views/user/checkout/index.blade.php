@@ -41,39 +41,11 @@
                     </div>
                 </div>
 
-                {{-- Courier --}}
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-5">🚚 Pilih Kurir</h3>
-                    <div class="grid grid-cols-2 gap-3" x-data="{ courier: 'Gojek' }">
-                        @foreach([['Gojek','Rp 18.000','Same day'],['Grab','Rp 20.000','Same day']] as $c)
-                        <label class="flex items-center gap-3 p-3 border-2 rounded-xl cursor-pointer transition-all"
-                               :class="courier === '{{ $c[0] }}' ? 'border-[#7a4b2b] bg-[#fef9f5]' : 'border-gray-200'">
-                            <input type="radio" name="courier" value="{{ $c[0] }}" x-model="courier" class="accent-[#7a4b2b]" required>
-                            <div>
-                                <div class="font-medium text-sm text-gray-700">{{ $c[0] }}</div>
-                                <div class="text-xs text-gray-400">{{ $c[1] }} · Est. {{ $c[2] }}</div>
-                            </div>
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
+                {{-- Hidden Default Courier --}}
+                <input type="hidden" name="courier" value="manual">
 
-                {{-- Payment --}}
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-5">💳 Metode Pembayaran</h3>
-                    <div class="space-y-3" x-data="{ method: 'transfer_bank' }">
-                        @foreach([['transfer_bank','Transfer Bank','Mandiri, BCA, BRI, BSI'],['ewallet','E-Wallet','GoPay, OVO, DANA, ShopeePay'],['cod','COD (Bayar di Tempat)','Bayar saat barang diterima']] as $m)
-                        <label class="flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer transition-all"
-                               :class="method === '{{ $m[0] }}' ? 'border-[#7a4b2b] bg-[#fef9f5]' : 'border-gray-200'">
-                            <input type="radio" name="payment_method" value="{{ $m[0] }}" x-model="method" class="accent-[#7a4b2b]" required>
-                            <div>
-                                <div class="font-medium text-sm text-gray-700">{{ $m[1] }}</div>
-                                <div class="text-xs text-gray-400">{{ $m[2] }}</div>
-                            </div>
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
+                {{-- Hidden Default Payment Method --}}
+                <input type="hidden" name="payment_method" value="whatsapp_manual">
 
                 {{-- Notes --}}
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
