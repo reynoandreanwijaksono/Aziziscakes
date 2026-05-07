@@ -5,19 +5,20 @@
 
 @section('content')
 
-<div class="grid grid-cols-3 gap-5">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
     {{-- Brand List --}}
-    <div class="col-span-2">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+    <div class="lg:col-span-2">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
+            <div class="px-4 md:px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <h3 class="font-semibold text-gray-700">Daftar Brand</h3>
-                <form method="GET" class="flex gap-2">
+                <form method="GET" class="flex gap-2 w-full sm:w-auto">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari brand..."
-                           class="px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
-                    <button type="submit" class="bg-gray-800 text-white px-3 py-2 rounded-xl text-sm">Cari</button>
+                           class="w-full sm:w-auto px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
+                    <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-gray-700 flex-shrink-0">Cari</button>
                 </form>
             </div>
-            <table class="w-full">
+            <div class="overflow-x-auto flex-1">
+                <table class="w-full whitespace-nowrap">
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="text-left px-6 py-3 text-xs text-gray-400 font-medium">Brand</th>
@@ -64,7 +65,8 @@
                     <tr><td colspan="4" class="px-6 py-12 text-center text-gray-400 text-sm">Belum ada brand</td></tr>
                     @endforelse
                 </tbody>
-            </table>
+                </table>
+            </div>
             @if($brands->hasPages())
             <div class="px-6 py-4 border-t border-gray-100">{{ $brands->links() }}</div>
             @endif
@@ -72,8 +74,8 @@
     </div>
 
     {{-- Add Brand Form --}}
-    <div>
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+    <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-24">
             <h3 class="font-semibold text-gray-700 mb-5">Tambah Brand Baru</h3>
             <form method="POST" action="{{ route('admin.brands.store') }}" enctype="multipart/form-data">
                 @csrf

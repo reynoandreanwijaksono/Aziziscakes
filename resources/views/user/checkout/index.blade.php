@@ -18,19 +18,19 @@
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">KOTA *</label>
+                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">DESA *</label>
                                 <input type="text" name="shipping_city" value="{{ old('shipping_city') }}" required
-                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="Jepara">
+                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="Desa Bucu">
                             </div>
                             <div>
-                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">PROVINSI *</label>
+                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">KECAMATAN *</label>
                                 <input type="text" name="shipping_province" value="{{ old('shipping_province') }}" required
-                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="Jawa Tengah">
+                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="Kec. Kembang">
                             </div>
                             <div>
-                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">KODE POS *</label>
+                                <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">RT/RW *</label>
                                 <input type="text" name="shipping_postal_code" value="{{ old('shipping_postal_code') }}" required
-                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="59451">
+                                       class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]" placeholder="RT 01 / RW 02">
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">NO. TELEPON *</label>
@@ -44,8 +44,8 @@
                 {{-- Courier --}}
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                     <h3 class="font-semibold text-gray-700 mb-5">🚚 Pilih Kurir</h3>
-                    <div class="grid grid-cols-2 gap-3" x-data="{ courier: 'JNE' }">
-                        @foreach([['JNE','Rp 15.000','2-3 hari'],['JNT','Rp 12.000','2-4 hari'],['SiCepat','Rp 13.000','1-2 hari'],['Grab','Rp 20.000','Same day'],['Gojek','Rp 18.000','Same day']] as $c)
+                    <div class="grid grid-cols-2 gap-3" x-data="{ courier: 'Gojek' }">
+                        @foreach([['Gojek','Rp 18.000','Same day'],['Grab','Rp 20.000','Same day']] as $c)
                         <label class="flex items-center gap-3 p-3 border-2 rounded-xl cursor-pointer transition-all"
                                :class="courier === '{{ $c[0] }}' ? 'border-[#7a4b2b] bg-[#fef9f5]' : 'border-gray-200'">
                             <input type="radio" name="courier" value="{{ $c[0] }}" x-model="courier" class="accent-[#7a4b2b]" required>

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             'email'    => 'admin@aziziscake.id',
             'password' => Hash::make('password'),
             'role'     => 'admin',
-            'phone'    => '0853-8771-7112',
+            'phone'    => '0813-9233-5843',
             'address'  => 'Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454',
         ]);
 

@@ -137,7 +137,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
                 <p class="text-white/70 text-sm leading-relaxed">Menghadirkan kelezatan kue dan roti premium dengan resep keluarga dari Jepara, Jawa Tengah.</p>
                 <div class="flex gap-3 mt-5">
                     <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">📸</a>
-                    <a href="https://wa.me/6285387717112" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">💬</a>
+                    <a href="https://wa.me/6281392335843" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">💬</a>
                     <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">🎵</a>
                 </div>
             </div>
@@ -167,7 +167,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
                 <p class="text-[#e8a33a] text-sm mt-3">★ Promo spesial setiap akhir pekan!</p>
                 <div class="mt-4 text-sm text-white/70">
                     <p>📍 Bucu, Kec. Kembang, Jepara</p>
-                    <p class="mt-1">📞 +62 853-8771-7112</p>
+                    <p class="mt-1">📞 +62 813-9233-5843</p>
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 </div>
 
 {{-- WhatsApp Float --}}
-<a href="https://wa.me/6285387717112?text=Halo%20Aziziscake!%20Saya%20mau%20pesan%20kue" target="_blank"
+<a href="https://wa.me/6281392335843?text=Halo%20Aziziscake!%20Saya%20mau%20pesan%20kue" target="_blank"
    class="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white text-xl md:text-2xl rounded-full flex items-center justify-center shadow-xl z-30 animate-pulse hover:scale-110 transition-transform">
     💬
 </a>

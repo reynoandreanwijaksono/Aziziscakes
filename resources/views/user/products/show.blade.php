@@ -126,7 +126,7 @@
             <div class="bg-red-50 border border-red-200 text-red-600 px-5 py-3 rounded-xl text-sm text-center">Stok habis</div>
             @endif
 
-            <a href="https://wa.me/6285387717112?text=Halo%20Aziziscake!%20Saya%20tertarik%20dengan%20{{ urlencode($product->name) }}"
+            <a href="https://wa.me/6281392335843?text=Halo%20Aziziscake!%20Saya%20tertarik%20dengan%20{{ urlencode($product->name) }}"
                target="_blank"
                class="mt-3 flex items-center justify-center gap-2 border border-gray-200 text-gray-600 py-3 rounded-xl text-sm hover:bg-gray-50 transition-colors">
                 💬 Tanya via WhatsApp

@@ -247,7 +247,7 @@
             <p class="text-gray-500 text-sm leading-relaxed mb-6">Isi form di samping atau hubungi kami langsung melalui WhatsApp. Kami siap membantu dari pukul 06.00 – 19.00 setiap hari.</p>
             <ul class="space-y-3 text-sm text-gray-600">
                 <li class="flex items-center gap-3"><span class="text-lg">📍</span> Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454</li>
-                <li class="flex items-center gap-3"><span class="text-lg">📞</span> +62 853-8771-7112</li>
+                <li class="flex items-center gap-3"><span class="text-lg">📞</span> +62 813-9233-5843</li>
                 <li class="flex items-center gap-3"><span class="text-lg">📧</span> hello@aziziscake.id</li>
                 <li class="flex items-center gap-3"><span class="text-lg">🕖</span> Buka setiap hari 06.00 – 19.00</li>
                 <li class="flex items-center gap-3"><span class="text-lg">🚚</span> Gratis ongkir min. Rp 150.000</li>
@@ -322,16 +322,10 @@
                         <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full">🕕 Buka 06.00–19.00</span>
                         <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full">🎂 Cake & Bakery</span>
                     </div>
-                    <div class="flex gap-2">
                         <a href="https://maps.google.com/?cid=16829235595524921551" target="_blank"
-                           class="flex-1 bg-[#7a4b2b] text-white text-sm py-2.5 rounded-xl text-center hover:bg-[#5a3825] transition-colors">
+                           class="block w-full bg-[#7a4b2b] text-white text-sm py-2.5 rounded-xl text-center hover:bg-[#5a3825] transition-colors">
                             🗺️ Buka Maps
                         </a>
-                        <a href="tel:+6285387717112"
-                           class="flex-1 border border-[#7a4b2b] text-[#7a4b2b] text-sm py-2.5 rounded-xl text-center hover:bg-[#fef3ec] transition-colors">
-                            📞 Telepon
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -360,7 +354,7 @@ function handleOrder() {
     if (notes) msg += `\nCatatan: ${notes}`;
     msg += `\n\nNo. WA: ${phone}\n\nMohon konfirmasi ketersediaan ya! 😊`;
 
-    window.open('https://wa.me/6285387717112?text=' + encodeURIComponent(msg), '_blank');
+    window.open('https://wa.me/6281392335843?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 @endpush
