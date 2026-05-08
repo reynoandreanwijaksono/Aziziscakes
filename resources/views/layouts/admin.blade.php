@@ -34,8 +34,6 @@ body { font-family: 'Poppins', sans-serif; }
                 ['route' => 'admin.products.index', 'icon' => '🧁', 'label' => 'Produk'],
                 ['route' => 'admin.brands.index', 'icon' => '🏷️', 'label' => 'Brand'],
                 ['route' => 'admin.orders.index', 'icon' => '📦', 'label' => 'Pesanan'],
-                ['route' => 'admin.payments.index', 'icon' => '💳', 'label' => 'Pembayaran'],
-                ['route' => 'admin.shipments.index', 'icon' => '🚚', 'label' => 'Pengiriman'],
             ];
             @endphp
 

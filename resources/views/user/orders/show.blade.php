@@ -3,7 +3,7 @@
 @section('title', 'Detail Pesanan ' . $order->invoice_number)
 
 @section('content')
-<div style="background:#f6f1eb; min-height:100vh; padding:40px 60px;">
+<div class="main-container" style="background:#f6f1eb; min-height:100vh; padding:40px 60px;">
     <div style="max-width:900px; margin:0 auto;">
 
         <!-- Back -->
@@ -22,7 +22,7 @@
         </div>
         @endif
 
-        <div style="display:grid; grid-template-columns:1fr 340px; gap:25px; align-items:start;">
+        <div class="grid-container" style="display:grid; grid-template-columns:1fr 340px; gap:25px; align-items:start;">
 
             <!-- LEFT COLUMN -->
             <div>
@@ -33,8 +33,8 @@
                             <h2 style="font-family:'Playfair Display',serif; font-size:22px; color:#4b2e1e; margin-bottom:4px;">{{ $order->invoice_number }}</h2>
                             <div style="font-size:12px; color:#aaa;">Dipesan: {{ $order->created_at->format('d M Y, H:i') }}</div>
                         </div>
-                        @php $sb = $order->getStatusBadgeAttribute(); @endphp
-                        <span style="background:{{ $sb['color'] }}20; color:{{ $sb['color'] }}; font-size:12px; padding:6px 16px; border-radius:20px; font-weight:600;">
+                        @php $sb = $order->status_badge; @endphp
+                        <span style="background:{{ $sb['color'] . '20' }}; color:{{ $sb['color'] }}; font-size:12px; padding:6px 16px; border-radius:20px; font-weight:600;">
                             {{ $sb['label'] }}
                         </span>
                     </div>
@@ -103,8 +103,8 @@
                         @if($order->shipment->estimated_delivery)
                         <div style="font-size:13px; color:#166534;">Estimasi: <strong>{{ $order->shipment->estimated_delivery }}</strong></div>
                         @endif
-                        @php $shipSb = $order->shipment->getStatusBadgeAttribute(); @endphp
-                        <span style="background:{{ $shipSb['color'] }}20; color:{{ $shipSb['color'] }}; font-size:11px; padding:4px 12px; border-radius:20px; display:inline-block; margin-top:8px;">
+                        @php $shipSb = $order->shipment->status_badge; @endphp
+                        <span style="background:{{ $shipSb['color'] . '20' }}; color:{{ $shipSb['color'] }}; font-size:11px; padding:4px 12px; border-radius:20px; display:inline-block; margin-top:8px;">
                             {{ $shipSb['label'] }}
                         </span>
                     </div>
@@ -119,34 +119,34 @@
                     <div style="font-size:11px; letter-spacing:2px; color:#aaa; margin-bottom:14px; text-transform:uppercase;">Pembayaran</div>
 
                     @if($order->payment)
-                        @php $pb = $order->payment->getStatusBadgeAttribute(); @endphp
+                        @php $pb = $order->payment->status_badge; @endphp
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                             <span style="font-size:13px; color:#666;">Status</span>
-                            <span style="background:{{ $pb['color'] }}20; color:{{ $pb['color'] }}; font-size:12px; padding:4px 12px; border-radius:20px; font-weight:500;">
+                            <span style="background:{{ $pb['color'] . '20' }}; color:{{ $pb['color'] }}; font-size:12px; padding:4px 12px; border-radius:20px; font-weight:500;">
                                 {{ $pb['label'] }}
                             </span>
                         </div>
                         <div style="font-size:13px; color:#666; margin-bottom:8px;">
-                            Metode: <strong style="color:#4b2e1e;">{{ strtoupper($order->payment->payment_method) }}</strong>
+                            Metode: <strong style="color:#4b2e1e;">{{ strtoupper($order->payment->method) }}</strong>
                         </div>
                         <div style="font-size:15px; font-weight:700; color:#4b2e1e; margin-bottom:12px;">
                             Rp {{ number_format($order->payment->amount, 0, ',', '.') }}
                         </div>
 
-                        @if($order->payment->payment_proof)
+                        @if($order->payment->proof_image)
                         <div style="margin-top:10px;">
                             <div style="font-size:12px; color:#aaa; margin-bottom:6px;">Bukti Pembayaran:</div>
-                            <img src="{{ asset('storage/' . $order->payment->payment_proof) }}" alt="Bukti Bayar"
+                            <img src="{{ asset('storage/' . $order->payment->proof_image) }}" alt="Bukti Bayar"
                                  style="width:100%; border-radius:12px; border:1px solid #f0e8df;">
                         </div>
                         @endif
 
                         {{-- Upload proof if pending --}}
-                        @if($order->payment->status === 'pending' && !$order->payment->payment_proof)
+                        @if($order->payment->status === 'pending' && !$order->payment->proof_image)
                         <div style="margin-top:16px; padding-top:16px; border-top:1px solid #f0e8df;">
                             <div style="font-size:13px; color:#7a4b2b; font-weight:500; margin-bottom:10px;">📤 Upload Bukti Pembayaran</div>
 
-                            @if($order->payment->payment_method === 'transfer')
+                            @if($order->payment->method === 'transfer')
                             <div style="background:#fef9f5; padding:12px; border-radius:10px; font-size:12px; color:#666; margin-bottom:12px;">
                                 <strong style="color:#4b2e1e;">Rekening Tujuan:</strong><br>
                                 BCA: <strong>1234567890</strong> a/n Aziziscake<br>
@@ -202,9 +202,9 @@
 </div>
 
 <style>
-@media(max-width:768px){
-    div[style*="grid-template-columns:1fr 340px"] { display:block !important; }
-    div[style*="padding:40px 60px"] { padding:20px !important; }
+@@media (max-width: 768px) {
+    .grid-container { display:block !important; }
+    .main-container { padding:20px !important; }
 }
 </style>
 @endsection

@@ -21,11 +21,11 @@ class Payment extends Model
     public function getStatusBadgeAttribute(): array
     {
         return match ($this->status) {
-            'pending'  => ['label' => 'Menunggu', 'color' => 'yellow'],
-            'paid'     => ['label' => 'Lunas', 'color' => 'green'],
-            'failed'   => ['label' => 'Gagal', 'color' => 'red'],
-            'refunded' => ['label' => 'Dikembalikan', 'color' => 'purple'],
-            default    => ['label' => 'Unknown', 'color' => 'gray'],
+            'pending'  => ['label' => 'Menunggu', 'color' => '#f59e0b'],
+            'paid'     => ['label' => 'Lunas', 'color' => '#10b981'],
+            'failed'   => ['label' => 'Gagal', 'color' => '#ef4444'],
+            'refunded' => ['label' => 'Dikembalikan', 'color' => '#8b5cf6'],
+            default    => ['label' => 'Unknown', 'color' => '#6b7280'],
         };
     }
 }

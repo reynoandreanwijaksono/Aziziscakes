@@ -32,7 +32,7 @@ class CheckoutController extends Controller
             'shipping_postal_code' => 'required|string',
             'shipping_phone'       => 'required|string',
             'courier'              => 'required|string',
-            'payment_method'       => 'required|in:transfer_bank,ewallet,cod',
+            'payment_method'       => 'required|in:transfer_bank,ewallet,cod,whatsapp_manual',
             'notes'                => 'nullable|string',
         ]);
 
@@ -44,7 +44,9 @@ class CheckoutController extends Controller
             return back()->with('error', 'Keranjang belanja kosong!');
         }
 
-        DB::transaction(function () use ($validated, $cartItems, $request) {
+        $order = null;
+
+        DB::transaction(function () use ($validated, $cartItems, $request, &$order) {
             $subtotal = $cartItems->sum('subtotal');
             $shippingCost = $this->calculateShipping($validated['courier']);
             $total = $subtotal + $shippingCost;
@@ -80,7 +82,7 @@ class CheckoutController extends Controller
 
             Payment::create([
                 'order_id' => $order->id,
-                'method'   => $validated['payment_method'],
+                'method'   => $validated['payment_method'] === 'whatsapp_manual' ? 'transfer_bank' : $validated['payment_method'],
                 'amount'   => $total,
                 'status'   => 'pending',
             ]);
@@ -99,8 +101,40 @@ class CheckoutController extends Controller
             session(['latest_order_id' => $order->id]);
         });
 
-        return redirect()->route('orders.show', session('latest_order_id'))
-            ->with('success', 'Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
+        // Merangkai pesan WhatsApp
+        $user = auth()->user();
+        $invoice = $order->invoice_number ?? 'INV-' . $order->id;
+        
+        $msg = "Halo Aziziscake! Saya ingin melanjutkan pesanan saya. 📦\n\n";
+        $msg .= "*Nomor Invoice:* " . $invoice . "\n";
+        $msg .= "*Nama Pemesan:* " . $user->name . "\n";
+        $msg .= "*No. HP:* " . $validated['shipping_phone'] . "\n\n";
+        
+        $msg .= "*Alamat Pengiriman:*\n";
+        $msg .= $validated['shipping_address'] . "\n";
+        $msg .= $validated['shipping_city'] . ", " . $validated['shipping_province'] . "\n";
+        $msg .= "RT/RW: " . $validated['shipping_postal_code'] . "\n\n";
+
+        $msg .= "*Detail Pesanan:*\n";
+        foreach ($cartItems as $item) {
+            $priceStr = number_format($item->product->effective_price, 0, ',', '.');
+            $subStr = number_format($item->subtotal, 0, ',', '.');
+            $msg .= "- {$item->quantity}x {$item->product->name} @ Rp {$priceStr} (Rp {$subStr})\n";
+        }
+
+        $msg .= "\n";
+        if (!empty($validated['notes'])) {
+            $msg .= "*Catatan:* " . $validated['notes'] . "\n";
+        }
+        
+        $subtotalOrder = number_format($order->subtotal, 0, ',', '.');
+        $msg .= "*Estimasi Total:* Rp {$subtotalOrder} (belum ongkir)\n\n";
+        $msg .= "Mohon informasi ongkos kirim dan total akhirnya ya kak! 😊";
+
+        $whatsappUrl = 'https://wa.me/6281392335843?text=' . rawurlencode($msg);
+
+        // Langsung redirect ke WhatsApp
+        return redirect()->away($whatsappUrl);
     }
 
     private function calculateShipping(string $courier): int

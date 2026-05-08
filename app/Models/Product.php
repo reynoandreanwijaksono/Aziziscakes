@@ -65,6 +65,11 @@ class Product extends Model
         return $this->hasMany(Cart::class);
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function getEffectivePriceAttribute(): int
     {
         return $this->price_promo ?? $this->price_discount ?? $this->price;

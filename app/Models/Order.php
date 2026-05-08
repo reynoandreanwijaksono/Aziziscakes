@@ -52,12 +52,12 @@ class Order extends Model
     public function getStatusBadgeAttribute(): array
     {
         return match ($this->status) {
-            'pending'    => ['label' => 'Menunggu', 'color' => 'yellow'],
-            'processing' => ['label' => 'Diproses', 'color' => 'blue'],
-            'shipped'    => ['label' => 'Dikirim', 'color' => 'indigo'],
-            'completed'  => ['label' => 'Selesai', 'color' => 'green'],
-            'cancelled'  => ['label' => 'Dibatalkan', 'color' => 'red'],
-            default      => ['label' => 'Unknown', 'color' => 'gray'],
+            'pending'    => ['label' => 'Menunggu', 'color' => '#f59e0b'],
+            'processing' => ['label' => 'Diproses', 'color' => '#3b82f6'],
+            'shipped'    => ['label' => 'Dikirim', 'color' => '#8b5cf6'],
+            'completed'  => ['label' => 'Selesai', 'color' => '#10b981'],
+            'cancelled'  => ['label' => 'Dibatalkan', 'color' => '#ef4444'],
+            default      => ['label' => 'Unknown', 'color' => '#6b7280'],
         };
     }
 }

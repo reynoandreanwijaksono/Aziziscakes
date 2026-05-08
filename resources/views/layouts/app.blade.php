@@ -18,6 +18,10 @@
 }
 body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 .playfair { font-family: 'Playfair Display', serif; }
+.nav-link { position: relative; padding: 0.25rem 0.5rem; transition: color 0.3s; }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; background-color: var(--brown-main); width: 0; transition: width 0.3s ease; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link:hover, .nav-link.active { color: var(--brown-main); }
 </style>
 @stack('styles')
 </head>
@@ -36,45 +40,47 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
         <a href="{{ route('home') }}" class="playfair text-xl md:text-2xl text-[#5a3825] font-bold z-50">🎂 AZIZISCAKE</a>
 
         {{-- Desktop Menu --}}
-        <div class="hidden md:flex items-center gap-6 text-sm text-gray-600">
-            <a href="{{ route('products.index') }}" class="hover:text-[#7a4b2b] transition-colors">Menu</a>
-            <a href="{{ route('home') }}#galeri" class="hover:text-[#7a4b2b] transition-colors">Galeri</a>
-            <a href="{{ route('home') }}#tentang" class="hover:text-[#7a4b2b] transition-colors">Tentang</a>
-            <a href="{{ route('home') }}#testimoni" class="hover:text-[#7a4b2b] transition-colors">Ulasan</a>
+        <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-600">
+            <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
+            <a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">Menu</a>
+            <a href="{{ route('home') }}#galeri" class="nav-link">Galeri</a>
+            <a href="{{ route('home') }}#tentang" class="nav-link">Tentang</a>
+            <a href="{{ route('home') }}#testimoni" class="nav-link">Ulasan</a>
         </div>
 
-        <div class="hidden md:flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-4">
             {{-- Cart --}}
             @auth
-            <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-[#7a4b2b]">
-                🛒
+            <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-[#7a4b2b] transform hover:-translate-y-1 hover:scale-110 transition-all duration-300">
+                <span class="text-xl">🛒</span>
                 @php $cartCount = auth()->user()->cart()->count(); @endphp
                 @if($cartCount > 0)
-                <span class="absolute -top-1 -right-1 bg-[#7a4b2b] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">{{ $cartCount }}</span>
+                <span class="absolute -top-1 -right-1 bg-[#7a4b2b] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">{{ $cartCount }}</span>
                 @endif
             </a>
-            <div class="relative" x-data="{ open: false }">
-                <button @click="open = !open" class="flex items-center gap-2 text-sm text-gray-700 hover:text-[#7a4b2b]">
-                    <div class="w-8 h-8 rounded-full bg-[#f0e6d9] flex items-center justify-center text-[#7a4b2b] font-semibold text-xs">
+            <div class="relative ml-2" x-data="{ open: false }">
+                <button @click="open = !open" class="flex items-center gap-2.5 text-sm text-gray-700 hover:text-[#7a4b2b] group transition-all duration-300">
+                    <div class="w-9 h-9 rounded-full bg-[#f0e6d9] flex items-center justify-center text-[#7a4b2b] font-semibold text-sm shadow-inner group-hover:shadow-md transition-all duration-300">
                         {{ substr(auth()->user()->name, 0, 2) }}
                     </div>
-                    <span class="hidden lg:block">{{ auth()->user()->name }}</span>
+                    <span class="hidden lg:block font-medium">{{ auth()->user()->name }}</span>
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-[#7a4b2b] transform transition-transform duration-300" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                    <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#fef3ec]">📦 Pesanan Saya</a>
+                <div x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95 translate-y-2" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-95 translate-y-2" class="absolute right-0 mt-3 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                    <a href="{{ route('orders.index') }}" class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-[#fef3ec] hover:text-[#7a4b2b] transition-colors">📦 Pesanan Saya</a>
                     @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#fef3ec]">⚙️ Admin Panel</a>
+                    <a href="{{ route('admin.dashboard') }}" class="block px-5 py-2.5 text-sm text-gray-700 hover:bg-[#fef3ec] hover:text-[#7a4b2b] transition-colors">⚙️ Admin Panel</a>
                     @endif
-                    <hr class="my-1 border-gray-100">
+                    <hr class="my-1.5 border-gray-100">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">🚪 Keluar</button>
+                        <button class="w-full text-left px-5 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors">🚪 Keluar</button>
                     </form>
                 </div>
             </div>
             @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-[#7a4b2b]">Masuk</a>
-            <a href="{{ route('register') }}" class="bg-[#7a4b2b] text-white px-5 py-2 rounded-full text-sm hover:bg-[#5a3825] transition-colors">Daftar</a>
+            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-[#7a4b2b] px-2 py-1 transition-colors">Masuk</a>
+            <a href="{{ route('register') }}" class="bg-[#7a4b2b] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#5a3825] hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-300">Daftar</a>
             @endauth
         </div>
 
@@ -222,10 +228,46 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 </button>
 
 <script>
-window.addEventListener('scroll', () => {
-    document.getElementById('scrollTop').classList.toggle('hidden', window.scrollY < 400);
-    document.getElementById('scrollTop').classList.toggle('flex', window.scrollY >= 400);
-});
+function updateScrollSpy() {
+    const scrollTopBtn = document.getElementById('scrollTop');
+    if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle('hidden', window.scrollY < 400);
+        scrollTopBtn.classList.toggle('flex', window.scrollY >= 400);
+    }
+
+    if (window.location.pathname === '/' || window.location.pathname === '') {
+        let current = '';
+        const sections = document.querySelectorAll('section[id]');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= (sectionTop - 250)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        let hasActive = false;
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            let href = link.getAttribute('href') || '';
+            
+            // Only add active if current section ID is in the href hash
+            if (current && href.includes('#' + current)) {
+                link.classList.add('active');
+                hasActive = true;
+            }
+        });
+        
+        // Fallback to Beranda
+        if (!hasActive && navLinks.length > 0) {
+            navLinks[0].classList.add('active');
+        }
+    }
+}
+
+window.addEventListener('scroll', updateScrollSpy);
+document.addEventListener('DOMContentLoaded', updateScrollSpy);
 </script>
 
 @livewireScripts

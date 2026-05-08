@@ -16,6 +16,24 @@
          class="absolute right-24 top-28 w-44 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
 
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
+        {{-- Floating Badge 1 --}}
+        <div class="absolute -top-6 -right-4 md:-right-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse" style="animation-duration: 3s">
+            <div class="bg-yellow-100 text-yellow-600 p-1.5 rounded-full text-lg leading-none">⭐</div>
+            <div class="text-left">
+                <div class="font-bold text-[#4b2e1e] text-sm leading-tight">4.9/5.0</div>
+                <div class="text-[10px] text-gray-500">Ulasan Terbaik</div>
+            </div>
+        </div>
+
+        {{-- Floating Badge 2 --}}
+        <div class="absolute -bottom-5 -left-4 md:-left-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
+            <div class="bg-green-100 text-green-600 p-1.5 rounded-full text-lg leading-none">✨</div>
+            <div class="text-left">
+                <div class="font-bold text-[#4b2e1e] text-sm leading-tight">100% Halal</div>
+                <div class="text-[10px] text-gray-500">Bahan Premium</div>
+            </div>
+        </div>
+
         <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">✦ Resep Rahasia Sejak 1990 ✦</span>
         <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">Freshly Baked,<br>Just for You!</h1>
         <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.</p>
