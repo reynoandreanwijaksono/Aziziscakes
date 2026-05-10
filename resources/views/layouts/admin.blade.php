@@ -23,7 +23,7 @@ body { font-family: 'Poppins', sans-serif; }
     <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-[#4b2e1e] text-white flex flex-col flex-shrink-0 transition-transform duration-300 md:relative md:translate-x-0"
            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="p-6 border-b border-white/10">
-            <div class="playfair text-xl">🎂 Aziziscake</div>
+            <div class="playfair text-xl"><i class="fas fa-cake-candles mr-2"></i>Aziziscake</div>
             <div class="text-xs text-white/50 mt-1">Admin Panel</div>
         </div>
 
@@ -59,10 +59,10 @@ body { font-family: 'Poppins', sans-serif; }
                 </div>
             </div>
             <div class="flex gap-2">
-                <a href="{{ route('home') }}" class="flex-1 text-center text-xs text-white/60 hover:text-white py-1.5 rounded-lg hover:bg-white/10 transition-colors">🌐 Website</a>
+                <a href="{{ route('home') }}" class="flex-1 text-center text-xs text-white/60 hover:text-white py-1.5 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-globe mr-1"></i>Website</a>
                 <form method="POST" action="{{ route('logout') }}" class="flex-1">
                     @csrf
-                    <button class="w-full text-xs text-red-300 hover:text-red-200 py-1.5 rounded-lg hover:bg-white/10 transition-colors">🚪 Keluar</button>
+                    <button class="w-full text-xs text-red-300 hover:text-red-200 py-1.5 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-sign-out-alt mr-1"></i>Keluar</button>
                 </form>
             </div>
         </div>
@@ -89,12 +89,12 @@ body { font-family: 'Poppins', sans-serif; }
         {{-- Flash Messages --}}
         @if(session('success'))
         <div class="m-6 mb-0 bg-green-50 border border-green-200 text-green-700 px-5 py-3 rounded-xl text-sm flex items-center gap-2">
-            ✅ {{ session('success') }}
+            <i class="fas fa-check-circle"></i>{{ session('success') }}
         </div>
         @endif
         @if(session('error'))
         <div class="m-6 mb-0 bg-red-50 border border-red-200 text-red-700 px-5 py-3 rounded-xl text-sm flex items-center gap-2">
-            ❌ {{ session('error') }}
+            <i class="fas fa-times-circle"></i>{{ session('error') }}
         </div>
         @endif
 

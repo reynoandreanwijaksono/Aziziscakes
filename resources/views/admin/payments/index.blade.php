@@ -12,7 +12,7 @@
     </div>
 
     @if(session('success'))
-    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;">✅ {{ session('success') }}</div>
+    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;"><i class="fas fa-check-circle"></i> {{ session('success') }}</div>
     @endif
 
     <!-- Filter Bar -->
@@ -42,7 +42,7 @@
             </select>
         </div>
         <button type="submit" style="background:#7a4b2b; color:white; padding:10px 22px; border:none; border-radius:10px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer; font-weight:500;">
-            🔍 Filter
+            <i class="fas fa-magnifying-glass"></i> Filter
         </button>
         <a href="{{ route('admin.payments.index') }}" style="background:#f6f1eb; color:#7a4b2b; padding:10px 18px; border-radius:10px; text-decoration:none; font-size:13px;">Reset</a>
     </form>
@@ -76,10 +76,10 @@
                     </td>
                     <td style="padding:14px 18px;">
                         @php
-                            $methods = ['transfer' => ['label'=>'Transfer Bank','icon'=>'🏦'], 'ewallet' => ['label'=>'E-Wallet','icon'=>'📱'], 'cod' => ['label'=>'COD','icon'=>'💵']];
-                            $m = $methods[$payment->payment_method] ?? ['label'=>$payment->payment_method,'icon'=>'💳'];
+                            $methods = ['transfer' => ['label'=>'Transfer Bank','icon'=>'fa-bank'], 'ewallet' => ['label'=>'E-Wallet','icon'=>'fa-mobile-alt'], 'cod' => ['label'=>'COD','icon'=>'fa-money-bill-alt']];
+                            $m = $methods[$payment->payment_method] ?? ['label'=>$payment->payment_method,'icon'=>'fa-credit-card'];
                         @endphp
-                        <span style="font-size:13px; color:#555;">{{ $m['icon'] }} {{ $m['label'] }}</span>
+                        <span style="font-size:13px; color:#555;"><i class="fas {{ $m['icon'] }} mr-2"></i>{{ $m['label'] }}</span>
                     </td>
                     <td style="padding:14px 18px; text-align:right; font-weight:600; color:#4b2e1e; font-size:13px;">
                         Rp {{ number_format($payment->amount, 0, ',', '.') }}
@@ -88,7 +88,7 @@
                         @if($payment->payment_proof)
                         <a href="{{ asset('storage/' . $payment->payment_proof) }}" target="_blank"
                            style="display:inline-block; background:#fef3ec; color:#7a4b2b; padding:5px 12px; border-radius:8px; text-decoration:none; font-size:12px;">
-                            📄 Lihat
+                            <i class="fas fa-file-alt mr-1"></i> Lihat
                         </a>
                         @else
                         <span style="color:#ccc; font-size:12px;">—</span>

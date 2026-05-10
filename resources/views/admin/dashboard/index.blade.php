@@ -7,16 +7,16 @@
 {{-- Stats Cards --}}
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
     @foreach([
-        ['📦','Total Produk', number_format($stats['total_products']), 'text-blue-600','bg-blue-50', route('admin.products.index')],
-        ['🛍️','Total Pesanan', number_format($stats['total_orders']), 'text-purple-600','bg-purple-50', route('admin.orders.index')],
-        ['👥','Total User', number_format($stats['total_users']), 'text-green-600','bg-green-50', '#'],
-        ['🌐','Website Content', 'Edit konten website', 'text-teal-600','bg-teal-50', route('admin.settings.website.index')],
-        ['💰','Total Revenue', 'Rp ' . number_format($stats['total_revenue'],0,',','.'), 'text-[#7a4b2b]','bg-[#fef3ec]', route('admin.payments.index')],
+        ['<i class="fas fa-box"></i>','Total Produk', number_format($stats['total_products']), 'text-blue-600','bg-blue-50', route('admin.products.index')],
+        ['<i class="fas fa-shopping-bag"></i>','Total Pesanan', number_format($stats['total_orders']), 'text-purple-600','bg-purple-50', route('admin.orders.index')],
+        ['<i class="fas fa-users"></i>','Total User', number_format($stats['total_users']), 'text-green-600','bg-green-50', '#'],
+        ['<i class="fas fa-globe"></i>','Website Content', 'Edit konten website', 'text-teal-600','bg-teal-50', route('admin.settings.website.index')],
+        ['<i class="fas fa-coins"></i>','Total Revenue', 'Rp ' . number_format($stats['total_revenue'],0,',','.'), 'text-[#7a4b2b]','bg-[#fef3ec]', route('admin.payments.index')],
     ] as $card)
     <a href="{{ $card[5] }}" class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
         <div class="flex items-center justify-between mb-4">
-            <div class="text-2xl">{{ $card[0] }}</div>
-            <div class="w-10 h-10 {{ $card[4] }} rounded-xl flex items-center justify-center text-lg">{{ $card[0] }}</div>
+            <div class="text-2xl">{!! $card[0] !!}</div>
+            <div class="w-10 h-10 {{ $card[4] }} rounded-xl flex items-center justify-center text-lg">{!! $card[0] !!}</div>
         </div>
         <div class="text-2xl font-bold text-gray-800">{{ $card[2] }}</div>
         <div class="text-sm text-gray-400 mt-1">{{ $card[1] }}</div>
@@ -27,13 +27,13 @@
 {{-- Second Row Stats --}}
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <h3 class="font-semibold text-gray-700 mb-1">⏳ Pesanan Pending</h3>
+        <h3 class="font-semibold text-gray-700 mb-1"><i class="fas fa-hourglass-end mr-2"></i>Pesanan Pending</h3>
         <div class="text-3xl font-bold text-orange-500">{{ $stats['pending_orders'] }}</div>
         <p class="text-xs text-gray-400 mt-1">Menunggu konfirmasi pembayaran</p>
         <a href="{{ route('admin.orders.index') }}?status=pending" class="text-xs text-[#7a4b2b] mt-3 inline-block hover:underline">Lihat semua →</a>
     </div>
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <h3 class="font-semibold text-gray-700 mb-1">📅 Revenue Bulan Ini</h3>
+        <h3 class="font-semibold text-gray-700 mb-1"><i class="fas fa-calendar mr-2"></i>Revenue Bulan Ini</h3>
         <div class="text-3xl font-bold text-green-600">Rp {{ number_format($stats['monthly_revenue'],0,',','.') }}</div>
         <p class="text-xs text-gray-400 mt-1">{{ now()->format('F Y') }}</p>
     </div>
@@ -43,7 +43,7 @@
     {{-- Recent Orders --}}
     <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-            <h3 class="font-semibold text-gray-700">📦 Pesanan Terbaru</h3>
+            <h3 class="font-semibold text-gray-700"><i class="fas fa-box mr-2"></i>Pesanan Terbaru</h3>
             <a href="{{ route('admin.orders.index') }}" class="text-xs text-[#7a4b2b] hover:underline">Lihat semua →</a>
         </div>
         <div class="overflow-x-auto">
@@ -85,7 +85,7 @@
     {{-- Top Products --}}
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-100">
-            <h3 class="font-semibold text-gray-700">🔥 Produk Terlaris</h3>
+            <h3 class="font-semibold text-gray-700"><i class="fas fa-fire mr-2"></i>Produk Terlaris</h3>
         </div>
         <div class="p-4 space-y-3">
             @forelse($topProducts as $i => $product)

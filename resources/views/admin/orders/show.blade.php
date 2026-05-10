@@ -57,50 +57,10 @@
             </div>
             @if($order->notes)
             <div class="mt-3 p-3 bg-yellow-50 rounded-xl text-sm text-yellow-800">
-                📝 {{ $order->notes }}
+                <i class="fas fa-sticky-note mr-2"></i>{{ $order->notes }}
             </div>
             @endif
         </div>
-
-        {{-- Shipment Info --}}
-        @if($order->shipment)
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-            <h3 class="font-semibold text-gray-700 mb-4">Info Pengiriman</h3>
-            <form method="POST" action="{{ route('admin.shipments.update', $order->shipment) }}">
-                @csrf @method('PUT')
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label class="text-xs text-gray-400 mb-1.5 block">KURIR</label>
-                        <select name="courier" class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm">
-                            @foreach(['JNE','JNT','SiCepat','Grab','Gojek'] as $c)
-                            <option {{ $order->shipment->courier === $c ? 'selected' : '' }}>{{ $c }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-400 mb-1.5 block">NO. RESI</label>
-                        <input type="text" name="tracking_number" value="{{ $order->shipment->tracking_number }}"
-                               class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm">
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-400 mb-1.5 block">STATUS</label>
-                        <select name="status" class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm">
-                            @foreach(['pending'=>'Pending','processing'=>'Diproses','shipped'=>'Dikirim','delivered'=>'Diterima'] as $v=>$l)
-                            <option value="{{ $v }}" {{ $order->shipment->status === $v ? 'selected' : '' }}>{{ $l }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-400 mb-1.5 block">ESTIMASI</label>
-                        <input type="text" name="estimated_days" value="{{ $order->shipment->estimated_days }}"
-                               class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm">
-                    </div>
-                </div>
-                <button type="submit" class="bg-[#7a4b2b] text-white px-5 py-2 rounded-xl text-sm hover:bg-[#5a3825]">Simpan Pengiriman</button>
-            </form>
-        </div>
-        @endif
-    </div>
 
     {{-- Right: Order Status --}}
     <div class="space-y-5">
