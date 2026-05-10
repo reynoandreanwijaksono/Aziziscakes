@@ -27,6 +27,13 @@ class OrderController extends Controller
         return view('admin.orders.show', compact('order'));
     }
 
+    public function destroy(Order $order)
+    {
+        $order->delete();
+
+        return redirect()->route('admin.orders.index')->with('success', 'Pesanan berhasil dihapus!');
+    }
+
     public function updateStatus(Request $request, Order $order)
     {
         $request->validate(['status' => 'required|in:pending,processing,shipped,completed,cancelled']);

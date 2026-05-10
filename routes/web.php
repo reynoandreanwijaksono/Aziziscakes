@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\{HomeController, ProductController, CartController, CheckoutController, OrderController};
-use App\Http\Controllers\Admin\{DashboardController, ProductController as AdminProductController, BrandController, OrderController as AdminOrderController, PaymentController, ShipmentController, UserController};
+use App\Http\Controllers\Admin\{DashboardController, ProductController as AdminProductController, BrandController, OrderController as AdminOrderController, PaymentController, ShipmentController, UserController, WebsiteContentController};
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +64,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Orders
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::delete('orders/{order}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.status');
+
+    // Website Content
+    Route::get('website-content', [WebsiteContentController::class, 'index'])->name('settings.website.index');
+    Route::put('website-content', [WebsiteContentController::class, 'update'])->name('settings.website.update');
 
     // Payments
     Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');

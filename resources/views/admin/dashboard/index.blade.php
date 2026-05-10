@@ -10,6 +10,7 @@
         ['📦','Total Produk', number_format($stats['total_products']), 'text-blue-600','bg-blue-50', route('admin.products.index')],
         ['🛍️','Total Pesanan', number_format($stats['total_orders']), 'text-purple-600','bg-purple-50', route('admin.orders.index')],
         ['👥','Total User', number_format($stats['total_users']), 'text-green-600','bg-green-50', '#'],
+        ['🌐','Website Content', 'Edit konten website', 'text-teal-600','bg-teal-50', route('admin.settings.website.index')],
         ['💰','Total Revenue', 'Rp ' . number_format($stats['total_revenue'],0,',','.'), 'text-[#7a4b2b]','bg-[#fef3ec]', route('admin.payments.index')],
     ] as $card)
     <a href="{{ $card[5] }}" class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100">

@@ -36,22 +36,6 @@
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-4 text-sm">📂 Kategori</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="category" value="" {{ !request('category') ? 'checked' : '' }} class="accent-[#7a4b2b]">
-                            <span class="text-sm text-gray-600">Semua</span>
-                        </label>
-                        @foreach($categories as $cat)
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="category" value="{{ $cat->slug }}" {{ request('category') === $cat->slug ? 'checked' : '' }} class="accent-[#7a4b2b]">
-                            <span class="text-sm text-gray-600">{{ $cat->name }}</span>
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                     <h3 class="font-semibold text-gray-700 mb-4 text-sm">💰 Harga</h3>
                     <div class="space-y-2">
                         <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Harga min"
@@ -103,7 +87,6 @@
                         <span class="absolute top-2 right-2 bg-blue-100 text-blue-600 text-xs px-2 py-0.5 rounded-full">✨</span>
                         @endif
                     </div>
-                    <div class="text-xs text-[#7a4b2b] mb-1">{{ $product->category->name ?? '-' }}</div>
                     <h3 class="font-semibold text-[#4b2e1e] text-sm mb-1 line-clamp-1">{{ $product->name }}</h3>
                     <p class="text-gray-400 text-xs mb-3 line-clamp-2">{{ $product->description }}</p>
                     <div class="flex items-center justify-between">

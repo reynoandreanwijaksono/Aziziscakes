@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>@yield('title', 'Aziziscake – Toko Kue Premium Jepara')</title>
+<title>@yield('title', isset($settings['seo_title']) ? $settings['seo_title'] : 'Aziziscake – Toko Kue Premium Jepara')</title>
+@if(isset($settings['seo_description']) && $settings['seo_description'])
+<meta name="description" content="{{ $settings['seo_description'] }}">
+@endif
+@if(isset($settings['seo_keywords']) && $settings['seo_keywords'])
+<meta name="keywords" content="{{ $settings['seo_keywords'] }}">
+@endif
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @livewireStyles
@@ -135,16 +141,28 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 @yield('content')
 
 {{-- Footer --}}
+@php
+        $settings = $settings ?? [];
+    $getFooter = fn($key, $default = '') => isset($settings[$key]) ? $settings[$key] : $default;
+    $footerText = $getFooter('footer_text', 'Menghadirkan kelezatan kue dan roti premium dengan resep keluarga dari Jepara, Jawa Tengah.');
+    $footerWhatsapp = $getFooter('social_whatsapp', 'https://wa.me/6281392335843');
+    $footerInstagram = $getFooter('social_instagram', '#');
+    $footerFacebook = $getFooter('social_facebook', '#');
+    $footerTiktok = $getFooter('social_tiktok', '#');
+    $footerHours = $getFooter('contact_hours', '06.00 – 19.00');
+    $footerAddress = $getFooter('contact_address', 'Bucu, Kec. Kembang, Jepara');
+    $footerPhone = $getFooter('contact_phone', '+62 813-9233-5843');
+@endphp
 <footer class="bg-[#4b2e1e] text-white pt-16 pb-24 md:pb-8">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
             <div class="sm:col-span-2 md:col-span-1">
                 <h3 class="playfair text-xl mb-4 text-[#f6f1eb]">🎂 Aziziscake</h3>
-                <p class="text-white/70 text-sm leading-relaxed">Menghadirkan kelezatan kue dan roti premium dengan resep keluarga dari Jepara, Jawa Tengah.</p>
+                <p class="text-white/70 text-sm leading-relaxed">{{ $footerText }}</p>
                 <div class="flex gap-3 mt-5">
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">📸</a>
-                    <a href="https://wa.me/6281392335843" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">💬</a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">🎵</a>
+                    <a href="{{ $footerInstagram }}" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">📸</a>
+                    <a href="{{ $footerWhatsapp }}" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">💬</a>
+                    <a href="{{ $footerTiktok }}" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#7a4b2b] transition-colors text-base">🎵</a>
                 </div>
             </div>
             <div>
@@ -169,11 +187,11 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
             <div>
                 <h3 class="playfair text-lg mb-4 text-[#f6f1eb]">Jam Buka</h3>
                 <p class="text-white/70 text-sm">Senin – Minggu</p>
-                <p class="text-white font-semibold text-sm mt-1">06.00 – 19.00</p>
+                <p class="text-white font-semibold text-sm mt-1">{{ $footerHours }}</p>
                 <p class="text-[#e8a33a] text-sm mt-3">★ Promo spesial setiap akhir pekan!</p>
                 <div class="mt-4 text-sm text-white/70">
-                    <p>📍 Bucu, Kec. Kembang, Jepara</p>
-                    <p class="mt-1">📞 +62 813-9233-5843</p>
+                    <p>📍 {{ $footerAddress }}</p>
+                    <p class="mt-1">📞 {{ $footerPhone }}</p>
                 </div>
             </div>
         </div>

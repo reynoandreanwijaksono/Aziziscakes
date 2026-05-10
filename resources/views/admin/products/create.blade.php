@@ -32,15 +32,7 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">KATEGORI *</label>
-                            <select name="category_id" required class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
-                                <option value="">Pilih kategori</option>
-                                @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ old('category_id', $product->category_id ?? '') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <input type="hidden" name="category_id" value="{{ old('category_id', $product->category_id ?? $categories->first()?->id) }}">
                         <div>
                             <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">BRAND</label>
                             <select name="brand_id" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">

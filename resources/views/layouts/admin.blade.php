@@ -30,10 +30,11 @@ body { font-family: 'Poppins', sans-serif; }
         <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
             @php
             $menuItems = [
-                ['route' => 'admin.dashboard', 'icon' => '📊', 'label' => 'Dashboard'],
-                ['route' => 'admin.products.index', 'icon' => '🧁', 'label' => 'Produk'],
-                ['route' => 'admin.brands.index', 'icon' => '🏷️', 'label' => 'Brand'],
-                ['route' => 'admin.orders.index', 'icon' => '📦', 'label' => 'Pesanan'],
+                ['route' => 'admin.dashboard', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v4H3V3zm0 7h7v11H3V10zm10 0h7v7h-7v-7z"/></svg>', 'label' => 'Dashboard'],
+                ['route' => 'admin.settings.website.index', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-9v18m9-9H3"/></svg>', 'label' => 'Website Content'],
+                ['route' => 'admin.products.index', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 16V8a2 2 0 00-1-1.732l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.732l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>', 'label' => 'Produk'],
+                ['route' => 'admin.brands.index', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7a3 3 0 104 4l7 7a2 2 0 01-2.828 2.828L8.172 13.828A3 3 0 017 7z"/></svg>', 'label' => 'Brand'],
+                ['route' => 'admin.orders.index', 'icon' => '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-7-8h8m5 2V7a2 2 0 00-2-2h-3.5l-.71-.71A1 1 0 0011.5 4h-3a1 1 0 00-.707.293L7.085 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V10a2 2 0 00-2-2z"/></svg>', 'label' => 'Pesanan'],
             ];
             @endphp
 
@@ -41,7 +42,7 @@ body { font-family: 'Poppins', sans-serif; }
             <a href="{{ route($item['route']) }}"
                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all
                       {{ request()->routeIs($item['route']) ? 'bg-white/20 text-white font-medium' : 'text-white/70 hover:bg-white/10 hover:text-white' }}">
-                <span>{{ $item['icon'] }}</span>
+                <span class="flex-none">{!! $item['icon'] !!}</span>
                 <span>{{ $item['label'] }}</span>
             </a>
             @endforeach

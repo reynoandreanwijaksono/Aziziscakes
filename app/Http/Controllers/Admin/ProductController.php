@@ -14,13 +14,11 @@ class ProductController extends Controller
     {
         $query = Product::with(['category', 'brand', 'primaryImage'])
             ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
-            ->when($request->category, fn($q) => $q->where('category_id', $request->category))
             ->when($request->status !== null, fn($q) => $q->where('is_active', $request->status));
 
         $products = $query->latest()->paginate(15)->withQueryString();
-        $categories = Category::where('is_active', true)->get();
 
-        return view('admin.products.index', compact('products', 'categories'));
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()

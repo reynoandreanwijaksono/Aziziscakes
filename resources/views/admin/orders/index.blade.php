@@ -69,10 +69,16 @@
                 </td>
                 <td class="px-6 py-4 text-xs text-gray-400">{{ $order->created_at->format('d M Y') }}</td>
                 <td class="px-6 py-4">
-                    <a href="{{ route('admin.orders.show', $order) }}"
-                       class="text-xs bg-[#fef3ec] text-[#7a4b2b] px-3 py-1.5 rounded-lg hover:bg-[#7a4b2b] hover:text-white transition-colors">
-                        Detail
-                    </a>
+                    <div class="flex gap-2 items-center">
+                        <a href="{{ route('admin.orders.show', $order) }}"
+                           class="text-xs bg-[#fef3ec] text-[#7a4b2b] px-3 py-1.5 rounded-lg hover:bg-[#7a4b2b] hover:text-white transition-colors">
+                            Detail
+                        </a>
+                        <form method="POST" action="{{ route('admin.orders.destroy', $order) }}" onsubmit="return confirm('Hapus pesanan ini?')">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="text-xs bg-red-100 text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-200 transition-colors">Hapus</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @empty

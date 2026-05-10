@@ -3,10 +3,13 @@
 @section('title', 'Aziziscake – Toko Kue Premium Jepara')
 
 @section('content')
+@php
+    $get = fn($key, $default = '') => $settings[$key] ?? $default;
+@endphp
 
 {{-- HERO --}}
 <section class="relative min-h-[70vh] md:min-h-[90vh] bg-cover bg-center flex items-center justify-center overflow-hidden"
-         style="background-image: url('https://images.unsplash.com/photo-1608198093002-ad4e005484ec')">
+         style="background-image: url('{{ $get('hero_background_image', 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec') }}')">
     <div class="absolute inset-0 bg-[#fff5eb]/85 backdrop-blur-sm"></div>
 
     {{-- Floating Images --}}
@@ -34,15 +37,15 @@
             </div>
         </div>
 
-        <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">✦ Resep Rahasia Sejak 1990 ✦</span>
-        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">Freshly Baked,<br>Just for You!</h1>
-        <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.</p>
+        <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">{{ $get('hero_label', '✦ Resep Rahasia Sejak 1990 ✦') }}</span>
+        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e($get('hero_title', 'Freshly Baked,<br>Just for You!'))) !!}</h1>
+        <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">{{ $get('hero_subtitle', 'Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.') }}</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <a href="{{ route('products.index') }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
-                Pesan Sekarang
+            <a href="{{ $get('hero_primary_cta_link', route('products.index')) }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
+                {{ $get('hero_primary_cta_text', 'Pesan Sekarang') }}
             </a>
-            <a href="{{ route('products.index') }}" class="w-full sm:w-auto border-2 border-[#7a4b2b] text-[#7a4b2b] px-8 py-3 rounded-full hover:bg-[#7a4b2b] hover:text-white transition-all text-sm font-medium">
-                Lihat Menu
+            <a href="{{ $get('hero_secondary_cta_link', route('products.index')) }}" class="w-full sm:w-auto border-2 border-[#7a4b2b] text-[#7a4b2b] px-8 py-3 rounded-full hover:bg-[#7a4b2b] hover:text-white transition-all text-sm font-medium">
+                {{ $get('hero_secondary_cta_text', 'Lihat Menu') }}
             </a>
         </div>
     </div>
@@ -64,17 +67,17 @@
 <div class="max-w-7xl mx-auto px-6 py-12">
     <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 flex items-center justify-between gap-8 flex-wrap">
         <div>
-            <h2 class="playfair text-3xl text-white mb-2">Promo Spesial Akhir Pekan!</h2>
-            <p class="text-white/80 text-sm leading-relaxed max-w-md">Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.<br>Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.</p>
-            <a href="{{ route('products.index') }}?category=custom-cake"
+            <h2 class="playfair text-3xl text-white mb-2">{{ $get('promo_title', 'Promo Spesial Akhir Pekan!') }}</h2>
+            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e($get('promo_description', 'Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.<br>Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.'))) !!}</p>
+            <a href="{{ $get('promo_cta_link', route('products.index')) }}"
                class="inline-block mt-5 bg-white text-[#7a4b2b] px-7 py-3 rounded-full font-medium text-sm hover:-translate-y-1 hover:shadow-xl transition-all">
-                Pesan Sekarang →
+                {{ $get('promo_cta_text', 'Pesan Sekarang →') }}
             </a>
         </div>
         <div class="bg-white/15 border-2 border-dashed border-white/50 rounded-2xl px-10 py-6 text-center text-white">
-            <div class="playfair text-6xl leading-none">20%</div>
+            <div class="playfair text-6xl leading-none">{{ $get('promo_discount_label', '20%') }}</div>
             <div class="font-medium mt-1">OFF</div>
-            <div class="text-xs opacity-80 mt-1">Custom Cake & Hampers</div>
+            <div class="text-xs opacity-80 mt-1">{{ $get('promo_discount_detail', 'Custom Cake & Hampers') }}</div>
         </div>
     </div>
 </div>
@@ -160,17 +163,21 @@
                  class="w-full h-[450px] object-cover rounded-2xl shadow-xl">
         </div>
         <div class="md:w-3/5">
-            <div class="text-xs tracking-widest text-[#7a4b2b] uppercase mb-3">— Kisah Kami —</div>
-            <h2 class="playfair text-4xl text-[#4b2e1e] mb-5">Tentang Aziziscake</h2>
-            <p class="text-gray-500 text-sm leading-relaxed mb-4">Sejak lama, Aziziscake telah menghadirkan kelezatan kue dan roti berkualitas di jantung Jepara, Jawa Tengah — menggunakan resep keluarga yang penuh cinta dan diwariskan dengan bangga.</p>
-            <p class="text-gray-500 text-sm leading-relaxed mb-8">Setiap produk kami dibuat fresh setiap hari menggunakan bahan premium pilihan tanpa pengawet sama sekali. Karena kami percaya, makanan terbaik adalah makanan yang jujur.</p>
+            <div class="text-xs tracking-widest text-[#7a4b2b] uppercase mb-3">{{ $get('about_label', '— Kisah Kami —') }}</div>
+            <h2 class="playfair text-4xl text-[#4b2e1e] mb-5">{{ $get('about_title', 'Tentang Aziziscake') }}</h2>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">{{ $get('about_paragraph_1', 'Sejak lama, Aziziscake telah menghadirkan kelezatan kue dan roti berkualitas di jantung Jepara, Jawa Tengah — menggunakan resep keluarga yang penuh cinta dan diwariskan dengan bangga.') }}</p>
+            <p class="text-gray-500 text-sm leading-relaxed mb-8">{{ $get('about_paragraph_2', 'Setiap produk kami dibuat fresh setiap hari menggunakan bahan premium pilihan tanpa pengawet sama sekali. Karena kami percaya, makanan terbaik adalah makanan yang jujur.') }}</p>
             <div class="grid grid-cols-2 gap-5">
-                @foreach([['🌾','Bahan Organik','Tepung & bahan pilihan premium'],['🚫','Tanpa Pengawet','100% alami, sehat & segar'],['🕖','Dibuat Fresh','Dipanggang setiap pagi pukul 5'],['🚚','Antar ke Rumah','Pengiriman dalam 2 jam']] as $f)
+                @foreach([1,2,3,4] as $index)
+                @php
+                    $title = $get("about_feature_{$index}_title", ['🌾','🚫','🕖','🚚'][$index - 1]);
+                    $text = $get("about_feature_{$index}_text", ['Tepung & bahan pilihan premium','100% alami, sehat & segar','Dipanggang setiap pagi pukul 5','Pengiriman dalam 2 jam'][$index - 1]);
+                @endphp
                 <div class="flex gap-3 items-start">
-                    <span class="text-2xl">{{ $f[0] }}</span>
+                    <span class="text-2xl">{{ $title }}</span>
                     <div>
-                        <h4 class="font-semibold text-[#4b2e1e] text-sm">{{ $f[1] }}</h4>
-                        <p class="text-gray-400 text-xs mt-0.5">{{ $f[2] }}</p>
+                        <h4 class="font-semibold text-[#4b2e1e] text-sm">{{ $title }}</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">{{ $text }}</p>
                     </div>
                 </div>
                 @endforeach
@@ -212,20 +219,20 @@
             <p class="text-gray-400 text-sm mt-2">Kepercayaan Anda adalah semangat kami setiap hari</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach([['SR','Sari Rahayu','Pelanggan Setia · Jepara','Kuenya benar-benar luar biasa! Teksturnya lembut, rasanya pas di lidah, dan aromanya menggoda banget. Sudah langganan lama dan nggak pernah kecewa sama Aziziscake!'],['BW','Budi Widodo','Pelanggan Baru · Kudus','Custom cake untuk ulang tahun anak saya benar-benar membuat semua tamu terkejut! Desainnya persis seperti yang diminta, dan rasanya lebih enak dari tampilannya.'],['AD','Ayu Dianty','Pelanggan Setia · Jepara','Cinnamon roll-nya meleleh di mulut! Harganya pun sangat terjangkau untuk kualitas sebagus ini. Pengirimannya juga cepat dan roti sampai masih hangat.']] as $t)
+            @for($i = 1; $i <= 3; $i++)
             <div class="bg-white rounded-2xl p-7 shadow-sm relative">
                 <div class="text-8xl playfair text-[#f0e6d9] absolute -top-3 left-4 leading-none">"</div>
                 <div class="text-[#e8a33a] text-sm mb-3">★★★★★</div>
-                <p class="text-gray-500 text-sm leading-relaxed mb-5">{{ $t[3] }}</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-5">{{ $get("testimonial_{$i}_text", ['Kuenya benar-benar luar biasa! Teksturnya lembut, rasanya pas di lidah, dan aromanya menggoda banget. Sudah langganan lama dan nggak pernah kecewa sama Aziziscake!','Custom cake untuk ulang tahun anak saya benar-benar membuat semua tamu terkejut! Desainnya persis seperti yang diminta, dan rasanya lebih enak dari tampilannya.','Cinnamon roll-nya meleleh di mulut! Harganya pun sangat terjangkau untuk kualitas sebagus ini. Pengirimannya juga cepat dan roti sampai masih hangat.'][$i - 1]) }}</p>
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#f0e6d9] flex items-center justify-center font-semibold text-[#7a4b2b] text-sm">{{ $t[0] }}</div>
+                    <div class="w-10 h-10 rounded-full bg-[#f0e6d9] flex items-center justify-center font-semibold text-[#7a4b2b] text-sm">{{ $get("testimonial_{$i}_initial", ['SR','BW','AD'][$i - 1]) }}</div>
                     <div>
-                        <div class="font-semibold text-[#4b2e1e] text-sm">{{ $t[1] }}</div>
-                        <div class="text-gray-400 text-xs">{{ $t[2] }}</div>
+                        <div class="font-semibold text-[#4b2e1e] text-sm">{{ $get("testimonial_{$i}_name", ['Sari Rahayu','Budi Widodo','Ayu Dianty'][$i - 1]) }}</div>
+                        <div class="text-gray-400 text-xs">{{ $get("testimonial_{$i}_role", ['Pelanggan Setia · Jepara','Pelanggan Baru · Kudus','Pelanggan Setia · Jepara'][$i - 1]) }}</div>
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endfor
         </div>
     </div>
 </section>
@@ -240,18 +247,17 @@
         </div>
 
         <div class="space-y-3" x-data="{ open: null }">
-            @foreach([['Apakah produk bisa dipesan dalam jumlah banyak (bulk order)?','Ya, kami menerima bulk order untuk berbagai keperluan seperti acara, arisan, atau corporate gift. Hubungi kami minimal 3 hari sebelum tanggal pengiriman untuk pemesanan lebih dari 50 pcs.'],['Berapa lama ketahanan produk setelah dibeli?','Roti dan pastry kami bertahan 2–3 hari pada suhu ruang, dan hingga 7 hari jika disimpan dalam kulkas. Custom cake lebih baik dikonsumsi dalam 2 hari.'],['Apakah tersedia opsi vegan atau bebas gluten?','Saat ini kami memiliki pilihan vegan untuk beberapa produk pastry dan kue. Untuk opsi bebas gluten, tersedia berdasarkan permintaan khusus dengan lead time 2 hari.'],['Bagaimana cara memesan custom cake?','Pemesanan custom cake bisa melalui WhatsApp atau langsung di website. Sertakan detail desain, ukuran, rasa, dan tanggal dibutuhkan. Kami memerlukan minimal 5 hari kerja.'],['Apakah ada layanan pengiriman ke luar kota?','Saat ini layanan pengiriman kami mencakup area Jepara, Kudus, Pati, dan sekitarnya.']] as $i => $faq)
+            @for($i = 1; $i <= 5; $i++)
             <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
                 <button @click="open = open === {{ $i }} ? null : {{ $i }}"
                         class="w-full px-6 py-5 flex justify-between items-center text-left font-medium text-[#4b2e1e] text-sm hover:bg-[#fef9f5] transition-colors">
-                    <span class="pr-4">{{ $faq[0] }}</span>
+                    <span class="pr-4">{{ $get("faq_{$i}_question", ['Apakah produk bisa dipesan dalam jumlah banyak (bulk order)?','Berapa lama ketahanan produk setelah dibeli?','Apakah tersedia opsi vegan atau bebas gluten?','Bagaimana cara memesan custom cake?','Apakah ada layanan pengiriman ke luar kota?'][$i - 1]) }}</span>
                     <span class="text-[#7a4b2b] text-xl transition-transform flex-shrink-0" :class="open === {{ $i }} ? 'rotate-45' : ''">+</span>
                 </button>
                 <div x-show="open === {{ $i }}" x-transition.opacity.duration.300ms class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-                    {{ $faq[1] }}
-                </div>
+                    {{ $get("faq_{$i}_answer", ['Ya, kami menerima bulk order untuk berbagai keperluan seperti acara, arisan, atau corporate gift. Hubungi kami minimal 3 hari sebelum tanggal pengiriman untuk pemesanan lebih dari 50 pcs.','Roti dan pastry kami bertahan 2–3 hari pada suhu ruang, dan hingga 7 hari jika disimpan dalam kulkas. Custom cake lebih baik dikonsumsi dalam 2 hari.','Saat ini kami memiliki pilihan vegan untuk beberapa produk pastry dan kue. Untuk opsi bebas gluten, tersedia berdasarkan permintaan khusus dengan lead time 2 hari.','Pemesanan custom cake bisa melalui WhatsApp atau langsung di website. Sertakan detail desain, ukuran, rasa, dan tanggal dibutuhkan. Kami memerlukan minimal 5 hari kerja.','Saat ini layanan pengiriman kami mencakup area Jepara, Kudus, Pati, dan sekitarnya.'][$i - 1]) }}</div>
             </div>
-            @endforeach
+            @endfor
         </div>
     </div>
 </section>
@@ -262,13 +268,13 @@
         <div class="md:w-2/5">
             <div class="text-xs tracking-widest text-[#7a4b2b] uppercase mb-3">— Hubungi Kami —</div>
             <h2 class="playfair text-4xl text-[#4b2e1e] mb-4">Pesan Sekarang</h2>
-            <p class="text-gray-500 text-sm leading-relaxed mb-6">Isi form di samping atau hubungi kami langsung melalui WhatsApp. Kami siap membantu dari pukul 06.00 – 19.00 setiap hari.</p>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">{{ $get('contact_description', 'Isi form di samping atau hubungi kami langsung melalui WhatsApp. Kami siap membantu dari pukul 06.00 – 19.00 setiap hari.') }}</p>
             <ul class="space-y-3 text-sm text-gray-600">
-                <li class="flex items-center gap-3"><span class="text-lg">📍</span> Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454</li>
-                <li class="flex items-center gap-3"><span class="text-lg">📞</span> +62 813-9233-5843</li>
-                <li class="flex items-center gap-3"><span class="text-lg">📧</span> hello@aziziscake.id</li>
-                <li class="flex items-center gap-3"><span class="text-lg">🕖</span> Buka setiap hari 06.00 – 19.00</li>
-                <li class="flex items-center gap-3"><span class="text-lg">🚚</span> Gratis ongkir min. Rp 150.000</li>
+                <li class="flex items-center gap-3"><span class="text-lg">📍</span> {{ $get('contact_address', 'Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg">📞</span> {{ $get('contact_phone', '+62 813-9233-5843') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg">📧</span> {{ $get('contact_email', 'hello@aziziscake.id') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg">🕖</span> {{ $get('contact_hours', 'Buka setiap hari 06.00 – 19.00') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg">🚚</span> {{ $get('contact_note', 'Gratis ongkir min. Rp 150.000') }}</li>
             </ul>
         </div>
         <div class="md:w-3/5">
@@ -372,7 +378,7 @@ function handleOrder() {
     if (notes) msg += `\nCatatan: ${notes}`;
     msg += `\n\nNo. WA: ${phone}\n\nMohon konfirmasi ketersediaan ya! 😊`;
 
-    window.open('https://wa.me/6281392335843?text=' + encodeURIComponent(msg), '_blank');
+    window.open('{{ $get('social_whatsapp', 'https://wa.me/6281392335843') }}?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 @endpush

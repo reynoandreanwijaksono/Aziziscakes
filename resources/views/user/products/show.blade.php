@@ -41,9 +41,6 @@
         {{-- Product Info --}}
         <div>
             <div class="flex items-center gap-2 mb-3">
-                @if($product->category)
-                <span class="text-xs bg-[#fef3ec] text-[#7a4b2b] px-3 py-1 rounded-full">{{ $product->category->name }}</span>
-                @endif
                 @if($product->is_bestseller)
                 <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">🔥 Terlaris</span>
                 @endif

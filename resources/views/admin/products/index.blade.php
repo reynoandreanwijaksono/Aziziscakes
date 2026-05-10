@@ -10,12 +10,6 @@
         <form method="GET" class="flex flex-col sm:flex-row gap-3">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
                    class="px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] w-full sm:max-w-xs">
-            <select name="category" class="px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] w-full sm:w-auto">
-                <option value="">Semua Kategori</option>
-                @foreach($categories as $cat)
-                <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                @endforeach
-            </select>
             <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-gray-700 w-full sm:w-auto">Filter</button>
         </form>
     </div>
@@ -31,7 +25,6 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="text-left px-6 py-4 text-xs text-gray-400 font-medium">Produk</th>
-                    <th class="text-left px-6 py-4 text-xs text-gray-400 font-medium">Kategori</th>
                     <th class="text-left px-6 py-4 text-xs text-gray-400 font-medium">Harga</th>
                     <th class="text-left px-6 py-4 text-xs text-gray-400 font-medium">Stok</th>
                     <th class="text-left px-6 py-4 text-xs text-gray-400 font-medium">Status</th>
@@ -53,7 +46,6 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 text-sm text-gray-600">{{ $product->category->name ?? '-' }}</td>
                     <td class="px-6 py-4">
                         <div class="text-sm font-medium text-[#7a4b2b]">Rp {{ number_format($product->price,0,',','.') }}</div>
                         @if($product->discount_percent > 0)
@@ -88,7 +80,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="7" class="px-6 py-12 text-center text-gray-400 text-sm">Tidak ada produk ditemukan</td></tr>
+                <tr><td colspan="6" class="px-6 py-12 text-center text-gray-400 text-sm">Tidak ada produk ditemukan</td></tr>
                 @endforelse
             </tbody>
         </table>

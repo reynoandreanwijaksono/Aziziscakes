@@ -172,7 +172,13 @@
             <p class="text-xs text-gray-400">Total pesanan: {{ $order->user->orders->count() }}</p>
         </div>
 
-        <a href="{{ route('admin.orders.index') }}" class="block text-center text-sm text-gray-500 hover:text-gray-700">← Kembali ke daftar</a>
+        <div class="space-y-3">
+            <a href="{{ route('admin.orders.index') }}" class="block text-center text-sm text-gray-500 hover:text-gray-700">← Kembali ke daftar</a>
+            <form method="POST" action="{{ route('admin.orders.destroy', $order) }}" onsubmit="return confirm('Hapus pesanan ini?')">
+                @csrf @method('DELETE')
+                <button type="submit" class="w-full bg-red-100 text-red-600 py-2.5 rounded-xl text-sm hover:bg-red-200">Hapus Pesanan</button>
+            </form>
+        </div>
     </div>
 </div>
 
