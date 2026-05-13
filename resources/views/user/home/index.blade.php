@@ -65,17 +65,17 @@
 
 {{-- PROMO BANNER --}}
 <div class="max-w-7xl mx-auto px-6 py-12">
-    <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 flex items-center justify-between gap-8 flex-wrap">
-        <div>
+    <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 grid gap-8 sm:grid-cols-[minmax(0,1fr)_280px] items-center">
+        <div class="min-w-0">
             <h2 class="playfair text-3xl text-white mb-2">{{ $get('promo_title', 'Promo Spesial Akhir Pekan!') }}</h2>
-            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', "Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.\nTerbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.")))) !!}</p>
+            <p class="text-white/80 text-sm leading-relaxed max-w-full sm:max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', "Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.\nTerbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.")))) !!}</p>
             <a href="{{ $get('promo_cta_link', route('products.index')) }}"
                class="inline-block mt-5 bg-white text-[#7a4b2b] px-7 py-3 rounded-full font-medium text-sm hover:-translate-y-1 hover:shadow-xl transition-all">
                 {{ $get('promo_cta_text', 'Pesan Sekarang →') }}
             </a>
         </div>
-        <div class="bg-white/15 border-2 border-dashed border-white/50 rounded-2xl px-10 py-6 text-center text-white">
-            <div class="playfair text-6xl leading-none">{{ $get('promo_discount_label', '20%') }}</div>
+        <div class="w-full sm:w-auto max-w-full bg-white/15 border-2 border-dashed border-white/50 rounded-2xl px-6 py-6 text-center text-white">
+            <div class="playfair text-5xl sm:text-6xl leading-none">{{ $get('promo_discount_label', '20%') }}</div>
             <div class="font-medium mt-1">OFF</div>
             <div class="text-xs opacity-80 mt-1">{{ $get('promo_discount_detail', 'Custom Cake & Hampers') }}</div>
         </div>
