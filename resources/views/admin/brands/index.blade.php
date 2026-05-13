@@ -36,7 +36,7 @@
                                     @if($brand->logo)
                                     <img src="{{ asset('storage/' . $brand->logo) }}" class="w-full h-full object-cover" alt="{{ $brand->name }}">
                                     @else
-                                    <span class="text-lg">🏷️</span>
+                                    <span class="text-lg"><i class="fa-solid fa-tag"></i></span>
                                     @endif
                                 </div>
                                 <div>

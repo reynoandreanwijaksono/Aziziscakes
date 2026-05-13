@@ -11,7 +11,7 @@
     </div>
 
     @if(session('success'))
-    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;">✅ {{ session('success') }}</div>
+    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
     @endif
 
     <!-- Filter -->
@@ -32,7 +32,7 @@
             </select>
         </div>
         <button type="submit" style="background:#7a4b2b; color:white; padding:10px 22px; border:none; border-radius:10px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">
-            🔍 Filter
+            <i class="fa-solid fa-magnifying-glass mr-2"></i> Filter
         </button>
         <a href="{{ route('admin.shipments.index') }}" style="background:#f6f1eb; color:#7a4b2b; padding:10px 18px; border-radius:10px; text-decoration:none; font-size:13px;">Reset</a>
     </form>
@@ -62,11 +62,11 @@
                     <td style="padding:14px 18px;">
                         <div style="font-size:13px; color:#4b2e1e; font-weight:500;">{{ $shipment->order->shipping_name ?? '-' }}</div>
                         <div style="font-size:11px; color:#aaa; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                            📍 {{ $shipment->order->shipping_city ?? '' }}, {{ $shipment->order->shipping_province ?? '' }}
+                            <i class="fa-solid fa-location-dot mr-1"></i> {{ $shipment->order->shipping_city ?? '' }}, {{ $shipment->order->shipping_province ?? '' }}
                         </div>
                     </td>
                     <td style="padding:14px 18px; font-size:13px; color:#555;">
-                        🚚 {{ $shipment->courier }}
+                        <i class="fa-solid fa-truck mr-1"></i> {{ $shipment->courier }}
                     </td>
                     <td style="padding:14px 18px; font-size:13px; font-family:monospace; color:#4b2e1e;">
                         {{ $shipment->tracking_number ?: '—' }}
@@ -86,7 +86,7 @@
                     <td style="padding:14px 18px; text-align:center;">
                         <button onclick="openModal({{ $shipment->id }}, '{{ $shipment->courier }}', '{{ $shipment->tracking_number }}', '{{ $shipment->estimated_delivery }}', '{{ $shipment->status }}')"
                                 style="background:#7a4b2b; color:white; padding:7px 16px; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-family:'Poppins',sans-serif;">
-                            ✏️ Update
+                            <i class="fa-solid fa-pen-to-square mr-1"></i> Update
                         </button>
                     </td>
                 </tr>
@@ -155,7 +155,7 @@
                 </button>
                 <button type="submit"
                         style="flex:2; background:#7a4b2b; color:white; padding:12px; border:none; border-radius:12px; font-family:'Poppins',sans-serif; font-size:14px; cursor:pointer; font-weight:500;">
-                    Simpan Perubahan ✓
+                    <i class="fa-solid fa-save mr-2"></i> Simpan Perubahan
                 </button>
             </div>
         </form>
