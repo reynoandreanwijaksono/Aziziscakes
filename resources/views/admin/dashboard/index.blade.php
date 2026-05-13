@@ -7,11 +7,19 @@
 {{-- Stats Cards --}}
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
     @foreach([
+<<<<<<< HEAD
         ['<i class="fas fa-box"></i>','Total Produk', number_format($stats['total_products']), 'text-blue-600','bg-blue-50', route('admin.products.index')],
         ['<i class="fas fa-shopping-bag"></i>','Total Pesanan', number_format($stats['total_orders']), 'text-purple-600','bg-purple-50', route('admin.orders.index')],
         ['<i class="fas fa-users"></i>','Total User', number_format($stats['total_users']), 'text-green-600','bg-green-50', '#'],
         ['<i class="fas fa-globe"></i>','Website Content', 'Edit konten website', 'text-teal-600','bg-teal-50', route('admin.settings.website.index')],
         ['<i class="fas fa-coins"></i>','Total Revenue', 'Rp ' . number_format($stats['total_revenue'],0,',','.'), 'text-[#7a4b2b]','bg-[#fef3ec]', route('admin.payments.index')],
+=======
+        ['<i class="fa-solid fa-box"></i>','Total Produk', number_format($stats['total_products']), 'text-blue-600','bg-blue-50', route('admin.products.index')],
+        ['<i class="fa-solid fa-bag-shopping"></i>','Total Pesanan', number_format($stats['total_orders']), 'text-purple-600','bg-purple-50', route('admin.orders.index')],
+        ['<i class="fa-solid fa-users"></i>','Total User', number_format($stats['total_users']), 'text-green-600','bg-green-50', '#'],
+        ['<i class="fa-solid fa-file-lines"></i>','Website Content', 'Edit konten website', 'text-teal-600','bg-teal-50', route('admin.settings.website.index')],
+        ['<i class="fa-solid fa-money-bill-wave"></i>','Total Revenue', 'Rp ' . number_format($stats['total_revenue'],0,',','.'), 'text-[#7a4b2b]','bg-[#fef3ec]', route('admin.payments.index')],
+>>>>>>> 66e1109 (icon)
     ] as $card)
     <a href="{{ $card[5] }}" class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
         <div class="flex items-center justify-between mb-4">
@@ -27,13 +35,21 @@
 {{-- Second Row Stats --}}
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+<<<<<<< HEAD
         <h3 class="font-semibold text-gray-700 mb-1"><i class="fas fa-hourglass-end mr-2"></i>Pesanan Pending</h3>
+=======
+        <h3 class="font-semibold text-gray-700 mb-1"><i class="fa-solid fa-hourglass-half"></i> Pesanan Pending</h3>
+>>>>>>> 66e1109 (icon)
         <div class="text-3xl font-bold text-orange-500">{{ $stats['pending_orders'] }}</div>
         <p class="text-xs text-gray-400 mt-1">Menunggu konfirmasi pembayaran</p>
         <a href="{{ route('admin.orders.index') }}?status=pending" class="text-xs text-[#7a4b2b] mt-3 inline-block hover:underline">Lihat semua →</a>
     </div>
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+<<<<<<< HEAD
         <h3 class="font-semibold text-gray-700 mb-1"><i class="fas fa-calendar mr-2"></i>Revenue Bulan Ini</h3>
+=======
+        <h3 class="font-semibold text-gray-700 mb-1"><i class="fa-solid fa-calendar-days"></i> Revenue Bulan Ini</h3>
+>>>>>>> 66e1109 (icon)
         <div class="text-3xl font-bold text-green-600">Rp {{ number_format($stats['monthly_revenue'],0,',','.') }}</div>
         <p class="text-xs text-gray-400 mt-1">{{ now()->format('F Y') }}</p>
     </div>
@@ -43,7 +59,11 @@
     {{-- Recent Orders --}}
     <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+<<<<<<< HEAD
             <h3 class="font-semibold text-gray-700"><i class="fas fa-box mr-2"></i>Pesanan Terbaru</h3>
+=======
+            <h3 class="font-semibold text-gray-700"><i class="fa-solid fa-box"></i> Pesanan Terbaru</h3>
+>>>>>>> 66e1109 (icon)
             <a href="{{ route('admin.orders.index') }}" class="text-xs text-[#7a4b2b] hover:underline">Lihat semua →</a>
         </div>
         <div class="overflow-x-auto">
@@ -85,7 +105,11 @@
     {{-- Top Products --}}
     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-100">
+<<<<<<< HEAD
             <h3 class="font-semibold text-gray-700"><i class="fas fa-fire mr-2"></i>Produk Terlaris</h3>
+=======
+            <h3 class="font-semibold text-gray-700"><i class="fa-solid fa-fire"></i> Produk Terlaris</h3>
+>>>>>>> 66e1109 (icon)
         </div>
         <div class="p-4 space-y-3">
             @forelse($topProducts as $i => $product)

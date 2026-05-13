@@ -21,7 +21,13 @@
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
         {{-- Floating Badge 1 --}}
         <div class="absolute -top-6 -right-4 md:-right-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse" style="animation-duration: 3s">
+<<<<<<< HEAD
             <div class="bg-yellow-100 text-yellow-600 p-1.5 rounded-full text-lg leading-none"><i class="fa-solid fa-star"></i></div>
+=======
+            <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full text-lg leading-none">
+                <i class="fa-solid fa-star"></i>
+            </div>
+>>>>>>> 66e1109 (icon)
             <div class="text-left">
                 <div class="font-bold text-[#4b2e1e] text-sm leading-tight">4.9/5.0</div>
                 <div class="text-[10px] text-gray-500">Ulasan Terbaik</div>
@@ -30,7 +36,13 @@
 
         {{-- Floating Badge 2 --}}
         <div class="absolute -bottom-5 -left-4 md:-left-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
+<<<<<<< HEAD
             <div class="bg-green-100 text-green-600 p-1.5 rounded-full text-lg leading-none"><i class="fa-solid fa-circle-check"></i></div>
+=======
+            <div class="bg-green-100 text-green-600 p-3 rounded-full text-lg leading-none">
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+>>>>>>> 66e1109 (icon)
             <div class="text-left">
                 <div class="font-bold text-[#4b2e1e] text-sm leading-tight">100% Halal</div>
                 <div class="text-[10px] text-gray-500">Bahan Premium</div>
@@ -38,7 +50,11 @@
         </div>
 
         <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">{{ $get('hero_label', '✦ Resep Rahasia Sejak 1990 ✦') }}</span>
+<<<<<<< HEAD
         <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('hero_title', "Freshly Baked,\nJust for You!")))) !!}</h1>
+=======
+        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('hero_title', 'Freshly Baked,<br>Just for You!')))) !!}</h1>
+>>>>>>> 66e1109 (icon)
         <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">{{ $get('hero_subtitle', 'Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.') }}</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a href="{{ $get('hero_primary_cta_link', route('products.index')) }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
@@ -68,7 +84,11 @@
     <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 grid gap-8 sm:grid-cols-[minmax(0,1fr)_280px] items-center">
         <div class="min-w-0">
             <h2 class="playfair text-3xl text-white mb-2">{{ $get('promo_title', 'Promo Spesial Akhir Pekan!') }}</h2>
+<<<<<<< HEAD
             <p class="text-white/80 text-sm leading-relaxed max-w-full sm:max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', "Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.\nTerbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.")))) !!}</p>
+=======
+            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', 'Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.<br>Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.')))) !!}</p>
+>>>>>>> 66e1109 (icon)
             <a href="{{ $get('promo_cta_link', route('products.index')) }}"
                class="inline-block mt-5 bg-white text-[#7a4b2b] px-7 py-3 rounded-full font-medium text-sm hover:-translate-y-1 hover:shadow-xl transition-all">
                 {{ $get('promo_cta_text', 'Pesan Sekarang →') }}
