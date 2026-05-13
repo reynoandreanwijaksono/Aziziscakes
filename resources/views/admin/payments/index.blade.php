@@ -12,7 +12,7 @@
     </div>
 
     @if(session('success'))
-    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;">✅ {{ session('success') }}</div>
+    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
     @endif
 
     <!-- Filter Bar -->
@@ -42,7 +42,7 @@
             </select>
         </div>
         <button type="submit" style="background:#7a4b2b; color:white; padding:10px 22px; border:none; border-radius:10px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer; font-weight:500;">
-            🔍 Filter
+            <i class="fa-solid fa-magnifying-glass mr-2"></i> Filter
         </button>
         <a href="{{ route('admin.payments.index') }}" style="background:#f6f1eb; color:#7a4b2b; padding:10px 18px; border-radius:10px; text-decoration:none; font-size:13px;">Reset</a>
     </form>
@@ -76,10 +76,14 @@
                     </td>
                     <td style="padding:14px 18px;">
                         @php
-                            $methods = ['transfer' => ['label'=>'Transfer Bank','icon'=>'🏦'], 'ewallet' => ['label'=>'E-Wallet','icon'=>'📱'], 'cod' => ['label'=>'COD','icon'=>'💵']];
-                            $m = $methods[$payment->payment_method] ?? ['label'=>$payment->payment_method,'icon'=>'💳'];
+                            $methods = [
+                                'transfer' => ['label'=>'Transfer Bank','icon'=>'<i class="fa-solid fa-building-columns"></i>'],
+                                'ewallet' => ['label'=>'E-Wallet','icon'=>'<i class="fa-solid fa-mobile-screen-button"></i>'],
+                                'cod' => ['label'=>'COD','icon'=>'<i class="fa-solid fa-money-bill-wave"></i>'],
+                            ];
+                            $m = $methods[$payment->payment_method] ?? ['label'=>$payment->payment_method,'icon'=>'<i class="fa-solid fa-credit-card"></i>'];
                         @endphp
-                        <span style="font-size:13px; color:#555;">{{ $m['icon'] }} {{ $m['label'] }}</span>
+                        <span style="font-size:13px; color:#555;">{!! $m['icon'] !!} {{ $m['label'] }}</span>
                     </td>
                     <td style="padding:14px 18px; text-align:right; font-weight:600; color:#4b2e1e; font-size:13px;">
                         Rp {{ number_format($payment->amount, 0, ',', '.') }}
@@ -88,7 +92,7 @@
                         @if($payment->payment_proof)
                         <a href="{{ asset('storage/' . $payment->payment_proof) }}" target="_blank"
                            style="display:inline-block; background:#fef3ec; color:#7a4b2b; padding:5px 12px; border-radius:8px; text-decoration:none; font-size:12px;">
-                            📄 Lihat
+                            <i class="fa-solid fa-file-lines mr-2"></i> Lihat
                         </a>
                         @else
                         <span style="color:#ccc; font-size:12px;">—</span>
@@ -114,7 +118,7 @@
                                 <input type="hidden" name="status" value="paid">
                                 <button type="submit" onclick="return confirm('Konfirmasi pembayaran ini?')"
                                         style="background:#10b981; color:white; padding:7px 14px; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-family:'Poppins',sans-serif;">
-                                    ✓ Konfirmasi
+                                    <i class="fa-solid fa-check mr-2"></i> Konfirmasi
                                 </button>
                             </form>
                             <form method="POST" action="{{ route('admin.payments.update-status', $payment) }}">
@@ -122,7 +126,7 @@
                                 <input type="hidden" name="status" value="failed">
                                 <button type="submit" onclick="return confirm('Tolak pembayaran ini?')"
                                         style="background:#ef4444; color:white; padding:7px 14px; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-family:'Poppins',sans-serif;">
-                                    ✕ Tolak
+                                    <i class="fa-solid fa-xmark mr-2"></i> Tolak
                                 </button>
                             </form>
                         </div>
@@ -132,7 +136,7 @@
                             <input type="hidden" name="status" value="refunded">
                             <button type="submit" onclick="return confirm('Proses refund?')"
                                     style="background:#6366f1; color:white; padding:7px 14px; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-family:'Poppins',sans-serif;">
-                                ↩ Refund
+                                <i class="fa-solid fa-rotate-left mr-2"></i> Refund
                             </button>
                         </form>
                         @else

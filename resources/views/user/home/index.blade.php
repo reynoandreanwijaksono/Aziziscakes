@@ -21,7 +21,7 @@
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
         {{-- Floating Badge 1 --}}
         <div class="absolute -top-6 -right-4 md:-right-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse" style="animation-duration: 3s">
-            <div class="bg-yellow-100 text-yellow-600 p-1.5 rounded-full text-lg leading-none">⭐</div>
+            <div class="bg-yellow-100 text-yellow-600 p-1.5 rounded-full text-lg leading-none"><i class="fa-solid fa-star"></i></div>
             <div class="text-left">
                 <div class="font-bold text-[#4b2e1e] text-sm leading-tight">4.9/5.0</div>
                 <div class="text-[10px] text-gray-500">Ulasan Terbaik</div>
@@ -30,7 +30,7 @@
 
         {{-- Floating Badge 2 --}}
         <div class="absolute -bottom-5 -left-4 md:-left-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
-            <div class="bg-green-100 text-green-600 p-1.5 rounded-full text-lg leading-none">✨</div>
+            <div class="bg-green-100 text-green-600 p-1.5 rounded-full text-lg leading-none"><i class="fa-solid fa-circle-check"></i></div>
             <div class="text-left">
                 <div class="font-bold text-[#4b2e1e] text-sm leading-tight">100% Halal</div>
                 <div class="text-[10px] text-gray-500">Bahan Premium</div>
@@ -38,7 +38,7 @@
         </div>
 
         <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">{{ $get('hero_label', '✦ Resep Rahasia Sejak 1990 ✦') }}</span>
-        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e($get('hero_title', 'Freshly Baked,<br>Just for You!'))) !!}</h1>
+        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('hero_title', "Freshly Baked,\nJust for You!")))) !!}</h1>
         <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">{{ $get('hero_subtitle', 'Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.') }}</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a href="{{ $get('hero_primary_cta_link', route('products.index')) }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
@@ -68,7 +68,7 @@
     <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 flex items-center justify-between gap-8 flex-wrap">
         <div>
             <h2 class="playfair text-3xl text-white mb-2">{{ $get('promo_title', 'Promo Spesial Akhir Pekan!') }}</h2>
-            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e($get('promo_description', 'Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.<br>Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.'))) !!}</p>
+            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', "Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.\nTerbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.")))) !!}</p>
             <a href="{{ $get('promo_cta_link', route('products.index')) }}"
                class="inline-block mt-5 bg-white text-[#7a4b2b] px-7 py-3 rounded-full font-medium text-sm hover:-translate-y-1 hover:shadow-xl transition-all">
                 {{ $get('promo_cta_text', 'Pesan Sekarang →') }}
@@ -97,9 +97,9 @@
                 <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
                      class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
                 @if($product->is_bestseller)
-                <span class="absolute top-2 left-2 bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-0.5 rounded-full">🔥 Terlaris</span>
+                <span class="absolute top-2 left-2 bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-fire mr-1"></i> Terlaris</span>
                 @elseif($product->is_new)
-                <span class="absolute top-2 left-2 bg-blue-50 text-blue-600 text-xs px-2.5 py-0.5 rounded-full">✨ Baru</span>
+                <span class="absolute top-2 left-2 bg-blue-50 text-blue-600 text-xs px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-star mr-1"></i> Baru</span>
                 @endif
                 @if($product->discount_percent > 0)
                 <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">-{{ $product->discount_percent }}%</span>
@@ -122,7 +122,7 @@
                 </button>
             </div>
             <div class="mt-2 text-xs text-[#e8a33a]">
-                ★★★★★ <span class="text-gray-400">({{ $product->review_count }})</span>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span class="text-gray-400">({{ $product->review_count }})</span>
             </div>
         </a>
         @endforeach
@@ -170,11 +170,14 @@
             <div class="grid grid-cols-2 gap-5">
                 @foreach([1,2,3,4] as $index)
                 @php
-                    $title = $get("about_feature_{$index}_title", ['🌾','🚫','🕖','🚚'][$index - 1]);
+                    $icons = ['<i class="fa-solid fa-wheat-awn"></i>', '<i class="fa-solid fa-leaf"></i>', '<i class="fa-regular fa-clock"></i>', '<i class="fa-solid fa-truck"></i>'];
+                    $titles = ['Bahan Premium', '100% Alami', 'Selalu Segar', 'Pengiriman Cepat'];
+                    $icon = $get("about_feature_{$index}_icon", $icons[$index - 1]);
+                    $title = $get("about_feature_{$index}_title", $titles[$index - 1]);
                     $text = $get("about_feature_{$index}_text", ['Tepung & bahan pilihan premium','100% alami, sehat & segar','Dipanggang setiap pagi pukul 5','Pengiriman dalam 2 jam'][$index - 1]);
                 @endphp
                 <div class="flex gap-3 items-start">
-                    <span class="text-2xl">{{ $title }}</span>
+                    <span class="text-2xl text-[#7a4b2b] w-8 text-center">{!! $icon !!}</span>
                     <div>
                         <h4 class="font-semibold text-[#4b2e1e] text-sm">{{ $title }}</h4>
                         <p class="text-gray-400 text-xs mt-0.5">{{ $text }}</p>
@@ -222,7 +225,9 @@
             @for($i = 1; $i <= 3; $i++)
             <div class="bg-white rounded-2xl p-7 shadow-sm relative">
                 <div class="text-8xl playfair text-[#f0e6d9] absolute -top-3 left-4 leading-none">"</div>
-                <div class="text-[#e8a33a] text-sm mb-3">★★★★★</div>
+                <div class="text-[#e8a33a] text-sm mb-3">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
                 <p class="text-gray-500 text-sm leading-relaxed mb-5">{{ $get("testimonial_{$i}_text", ['Kuenya benar-benar luar biasa! Teksturnya lembut, rasanya pas di lidah, dan aromanya menggoda banget. Sudah langganan lama dan nggak pernah kecewa sama Aziziscake!','Custom cake untuk ulang tahun anak saya benar-benar membuat semua tamu terkejut! Desainnya persis seperti yang diminta, dan rasanya lebih enak dari tampilannya.','Cinnamon roll-nya meleleh di mulut! Harganya pun sangat terjangkau untuk kualitas sebagus ini. Pengirimannya juga cepat dan roti sampai masih hangat.'][$i - 1]) }}</p>
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-[#f0e6d9] flex items-center justify-center font-semibold text-[#7a4b2b] text-sm">{{ $get("testimonial_{$i}_initial", ['SR','BW','AD'][$i - 1]) }}</div>
@@ -270,11 +275,11 @@
             <h2 class="playfair text-4xl text-[#4b2e1e] mb-4">Pesan Sekarang</h2>
             <p class="text-gray-500 text-sm leading-relaxed mb-6">{{ $get('contact_description', 'Isi form di samping atau hubungi kami langsung melalui WhatsApp. Kami siap membantu dari pukul 06.00 – 19.00 setiap hari.') }}</p>
             <ul class="space-y-3 text-sm text-gray-600">
-                <li class="flex items-center gap-3"><span class="text-lg">📍</span> {{ $get('contact_address', 'Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454') }}</li>
-                <li class="flex items-center gap-3"><span class="text-lg">📞</span> {{ $get('contact_phone', '+62 813-9233-5843') }}</li>
-                <li class="flex items-center gap-3"><span class="text-lg">📧</span> {{ $get('contact_email', 'hello@aziziscake.id') }}</li>
-                <li class="flex items-center gap-3"><span class="text-lg">🕖</span> {{ $get('contact_hours', 'Buka setiap hari 06.00 – 19.00') }}</li>
-                <li class="flex items-center gap-3"><span class="text-lg">🚚</span> {{ $get('contact_note', 'Gratis ongkir min. Rp 150.000') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-location-dot"></i></span> {{ $get('contact_address', 'Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-phone"></i></span> {{ $get('contact_phone', '+62 813-9233-5843') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-envelope"></i></span> {{ $get('contact_email', 'hello@aziziscake.id') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-regular fa-clock"></i></span> {{ $get('contact_hours', 'Buka setiap hari 06.00 – 19.00') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-truck"></i></span> {{ $get('contact_note', 'Gratis ongkir min. Rp 150.000') }}</li>
             </ul>
         </div>
         <div class="md:w-3/5">
@@ -318,7 +323,7 @@
                           class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5] min-h-[100px] resize-y"></textarea>
             </div>
             <button onclick="handleOrder()" class="w-full bg-[#7a4b2b] text-white py-4 rounded-full font-medium hover:bg-[#5a3825] hover:-translate-y-0.5 hover:shadow-lg transition-all">
-                Kirim Pesanan via WhatsApp 🚀
+                Kirim Pesanan via WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
             </button>
         </div>
     </div>
@@ -337,18 +342,18 @@
                 <div class="relative h-48 overflow-hidden">
                     <img src="https://lh3.googleusercontent.com/places/ANXAkqEwdCFzII7zLl3xyetzHn1sFTEwxHtuejIvIQhW-e60FRIWbU6JabkNqDEoP_Y2bh5lMto5o_QFeCkwcEscsaUUHx0wlbAJpAk=s4800-w800-h600"
                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Azizi Cake">
-                    <div class="absolute top-3 right-3 bg-white/92 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#4b2e1e]">⭐ 4.0 · Aziziscake</div>
+                    <div class="absolute top-3 right-3 bg-white/92 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#4b2e1e]"><i class="fa-solid fa-star text-yellow-500 mr-1"></i> 4.0 · Aziziscake</div>
                 </div>
                 <div class="p-5">
                     <h3 class="font-semibold text-[#4b2e1e]">Azizi Cake Bakery – Jepara</h3>
                     <p class="text-xs text-gray-400 mt-1 leading-relaxed">📍 RT.5/RW.5, Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454</p>
                     <div class="flex flex-wrap gap-2 mt-3 mb-4">
-                        <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full">🕕 Buka 06.00–19.00</span>
-                        <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full">🎂 Cake & Bakery</span>
+                        <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> Buka 06.00–19.00</span>
+                        <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-cake-candles mr-1"></i> Cake & Bakery</span>
                     </div>
                         <a href="https://maps.google.com/?cid=16829235595524921551" target="_blank"
                            class="block w-full bg-[#7a4b2b] text-white text-sm py-2.5 rounded-xl text-center hover:bg-[#5a3825] transition-colors">
-                            🗺️ Buka Maps
+                            <i class="fa-solid fa-map-location-dot mr-1"></i> Buka Maps
                         </a>
                 </div>
             </div>

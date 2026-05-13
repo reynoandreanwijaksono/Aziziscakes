@@ -1,3 +1,4 @@
+import "@fortawesome/fontawesome-free"
 import './bootstrap';
 
 // Alpine is included by Livewire v3 automatically.

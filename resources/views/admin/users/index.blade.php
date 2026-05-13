@@ -11,7 +11,7 @@
     </div>
 
     @if(session('success'))
-    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;">✅ {{ session('success') }}</div>
+    <div style="background:#d4edda; color:#155724; padding:14px 20px; border-radius:12px; margin-bottom:20px; font-size:14px;"><i class="fa-solid fa-circle-check"></i> {{ session('success') }}</div>
     @endif
 
     <!-- Filter -->
@@ -38,7 +38,7 @@
             </select>
         </div>
         <button type="submit" style="background:#7a4b2b; color:white; padding:10px 22px; border:none; border-radius:10px; font-family:'Poppins',sans-serif; font-size:13px; cursor:pointer;">
-            🔍 Filter
+            <i class="fa-solid fa-magnifying-glass mr-2"></i> Filter
         </button>
         <a href="{{ route('admin.users.index') }}" style="background:#f6f1eb; color:#7a4b2b; padding:10px 18px; border-radius:10px; text-decoration:none; font-size:13px;">Reset</a>
     </form>
@@ -92,9 +92,9 @@
                     </td>
                     <td style="padding:14px 18px; text-align:center;">
                         @if($user->role === 'admin')
-                        <span style="background:#7a4b2b20; color:#7a4b2b; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;">👑 Admin</span>
+                        <span style="background:#7a4b2b20; color:#7a4b2b; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;"><i class="fa-solid fa-crown mr-1"></i> Admin</span>
                         @else
-                        <span style="background:#3b82f620; color:#3b82f6; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;">👤 User</span>
+                        <span style="background:#3b82f620; color:#3b82f6; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;"><i class="fa-solid fa-user mr-1"></i> User</span>
                         @endif
                     </td>
                     <td style="padding:14px 18px; text-align:center; font-size:13px; color:#4b2e1e; font-weight:500;">
@@ -102,9 +102,9 @@
                     </td>
                     <td style="padding:14px 18px; text-align:center;">
                         @if($user->is_active)
-                        <span style="background:#10b98120; color:#10b981; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;">✓ Aktif</span>
+                        <span style="background:#10b98120; color:#10b981; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;"><i class="fa-solid fa-check mr-1"></i> Aktif</span>
                         @else
-                        <span style="background:#ef444420; color:#ef4444; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;">✗ Nonaktif</span>
+                        <span style="background:#ef444420; color:#ef4444; font-size:11px; padding:4px 12px; border-radius:20px; font-weight:500;"><i class="fa-solid fa-xmark mr-1"></i> Nonaktif</span>
                         @endif
                     </td>
                     <td style="padding:14px 18px; font-size:12px; color:#aaa;">
@@ -116,7 +116,11 @@
                             @csrf @method('PATCH')
                             <button type="submit"
                                     style="background:{{ $user->is_active ? '#fff0f0' : '#f0fdf4' }}; color:{{ $user->is_active ? '#ef4444' : '#10b981' }}; padding:7px 14px; border:none; border-radius:8px; font-size:12px; cursor:pointer; font-family:'Poppins',sans-serif;">
-                                {{ $user->is_active ? '✗ Nonaktifkan' : '✓ Aktifkan' }}
+                                @if($user->is_active)
+                                    <i class="fa-solid fa-xmark mr-2"></i> Nonaktifkan
+                                @else
+                                    <i class="fa-solid fa-check mr-2"></i> Aktifkan
+                                @endif
                             </button>
                         </form>
                         @else

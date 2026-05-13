@@ -57,7 +57,7 @@
             </div>
             @if($order->notes)
             <div class="mt-3 p-3 bg-yellow-50 rounded-xl text-sm text-yellow-800">
-                📝 {{ $order->notes }}
+                <i class="fa-solid fa-note-sticky mr-2"></i> {{ $order->notes }}
             </div>
             @endif
         </div>
