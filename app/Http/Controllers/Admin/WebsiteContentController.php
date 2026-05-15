@@ -20,7 +20,7 @@ class WebsiteContentController extends Controller
         $fields = [
             'hero_label', 'hero_title', 'hero_subtitle', 'hero_primary_cta_text', 'hero_primary_cta_link',
             'hero_secondary_cta_text', 'hero_secondary_cta_link', 'hero_background_image',
-            'hero_image_1', 'hero_image_2', 'hero_badge_1_title', 'hero_badge_1_subtitle',
+            'hero_badge_1_title', 'hero_badge_1_subtitle',
             'hero_badge_2_title', 'hero_badge_2_subtitle',
             'promo_title', 'promo_description', 'promo_cta_text', 'promo_cta_link', 'promo_discount_label', 'promo_discount_detail',
             'about_label', 'about_title', 'about_paragraph_1', 'about_paragraph_2', 'about_image',
@@ -44,6 +44,16 @@ class WebsiteContentController extends Controller
         }
 
         $validated = $request->validate(array_fill_keys($fields, 'nullable|string'));
+
+        // Handle file uploads for hero images
+        $fileFields = ['hero_image_1', 'hero_image_2'];
+        foreach ($fileFields as $field) {
+            if ($request->hasFile($field)) {
+                $file = $request->file($field);
+                $path = $file->store('settings/hero', 'public');
+                SiteSetting::set($field, $path);
+            }
+        }
 
         foreach ($validated as $key => $value) {
             SiteSetting::set($key, $value);

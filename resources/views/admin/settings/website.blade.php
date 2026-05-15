@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ route('admin.settings.website.update') }}">
+        <form method="POST" action="{{ route('admin.settings.website.update') }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -123,13 +123,19 @@
                         </label>
                         <label class="block">
                             <span class="text-sm text-gray-600">Gambar Kiri Hero</span>
-                            <input type="text" name="hero_image_1" value="{{ old('hero_image_1', $settings['hero_image_1'] ?? 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400') }}"
+                            <input type="file" name="hero_image_1" accept="image/*"
                                    class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
+                            @if($settings['hero_image_1'] ?? null)
+                                <p class="mt-2 text-xs text-gray-500">Current: <a href="{{ asset($settings['hero_image_1']) }}" target="_blank" class="text-[#7a4b2b] underline">View Image</a></p>
+                            @endif
                         </label>
                         <label class="block">
                             <span class="text-sm text-gray-600">Gambar Kanan Hero</span>
-                            <input type="text" name="hero_image_2" value="{{ old('hero_image_2', $settings['hero_image_2'] ?? 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350') }}"
+                            <input type="file" name="hero_image_2" accept="image/*"
                                    class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
+                            @if($settings['hero_image_2'] ?? null)
+                                <p class="mt-2 text-xs text-gray-500">Current: <a href="{{ asset($settings['hero_image_2']) }}" target="_blank" class="text-[#7a4b2b] underline">View Image</a></p>
+                            @endif
                         </label>
                         <label class="block">
                             <span class="text-sm text-gray-600">Badge 1 Judul</span>
