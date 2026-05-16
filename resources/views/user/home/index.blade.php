@@ -13,10 +13,24 @@
     <div class="absolute inset-0 bg-[#fff5eb]/85 backdrop-blur-sm"></div>
 
     {{-- Floating Images --}}
-    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
-         class="absolute left-20 bottom-20 w-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Roti" style="animation-duration:4s" loading="lazy">
-    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350"
-         class="absolute right-24 top-28 w-44 rounded-2xl shadow-2xl hidden lg:block animate-bounce" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
+    @php
+        $heroImage1 = $get('hero_image_1', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400');
+        $heroImage2 = $get('hero_image_2', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350');
+
+        $resolveImageUrl = fn($image) => match (true) {
+            str_starts_with($image, 'http') => $image,
+            str_starts_with($image, '/storage/') => asset(ltrim($image, '/')),
+            str_starts_with($image, 'storage/') => asset($image),
+            default => asset('storage/'.$image),
+        };
+
+        $heroImage1Url = $resolveImageUrl($heroImage1);
+        $heroImage2Url = $resolveImageUrl($heroImage2);
+    @endphp
+    <img src="{{ $heroImage1Url }}"
+         class="absolute left-20 bottom-20 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Roti" style="animation-duration:4s" loading="lazy">
+    <img src="{{ $heroImage2Url }}"
+         class="absolute right-24 top-28 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
 
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
         {{-- Floating Badge 1 --}}

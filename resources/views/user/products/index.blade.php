@@ -32,22 +32,22 @@
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                     <h3 class="font-semibold text-gray-700 mb-4 text-sm">🔍 Pencarian</h3>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
-                           class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
+                           class="w-full px-3 py-2.5 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                     <h3 class="font-semibold text-gray-700 mb-4 text-sm">💰 Harga</h3>
                     <div class="space-y-2">
                         <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Harga min"
-                               class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
+                               class="w-full px-3 py-2 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                         <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Harga max"
-                               class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
+                               class="w-full px-3 py-2 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
                     <h3 class="font-semibold text-gray-700 mb-4 text-sm">🔃 Urutkan</h3>
-                    <select name="sort" class="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b]">
+                    <select name="sort" class="w-full px-3 py-2 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                         <option value="">Terbaru</option>
                         <option value="terlaris" {{ request('sort')==='terlaris' ? 'selected' : '' }}>Terlaris</option>
                         <option value="price_asc" {{ request('sort')==='price_asc' ? 'selected' : '' }}>Harga: Rendah–Tinggi</option>
