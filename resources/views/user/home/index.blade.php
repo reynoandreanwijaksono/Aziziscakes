@@ -139,8 +139,12 @@
                     Pesan
                 </button>
             </div>
-            <div class="mt-2 text-xs text-[#e8a33a]">
-                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span class="text-gray-400">({{ $product->review_count }})</span>
+            <div class="mt-2 flex items-center gap-1 text-xs">
+                <span class="text-[#e8a33a]"><i class="fa-solid fa-star"></i></span>
+                <span class="text-gray-500">{{ number_format($product->rating, 1) }}</span>
+                <span class="text-gray-400">({{ $product->review_count }})</span>
+                <span class="text-gray-300 mx-1">·</span>
+                <span class="text-gray-400">{{ number_format($product->sold_count) }} terjual</span>
             </div>
         </a>
         @endforeach
@@ -221,9 +225,15 @@
                 <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-300">
             </div>
             <h3 class="font-medium text-[#4b2e1e] text-sm line-clamp-1">{{ $product->name }}</h3>
-            <div class="flex items-center justify-between mt-2">
+            <div class="flex items-center justify-between mt-2 mb-1">
                 <span class="text-[#7a4b2b] font-semibold text-sm">Rp {{ number_format($product->effective_price, 0, ',', '.') }}</span>
-                <span class="text-xs text-gray-400">{{ number_format($product->sold_count) }} terjual</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs">
+                <span class="text-[#e8a33a]"><i class="fa-solid fa-star"></i></span>
+                <span class="text-gray-500">{{ number_format($product->rating, 1) }}</span>
+                <span class="text-gray-400">({{ $product->review_count }})</span>
+                <span class="text-gray-300 mx-1">·</span>
+                <span class="text-gray-400">{{ number_format($product->sold_count) }} terjual</span>
             </div>
         </a>
         @endforeach
