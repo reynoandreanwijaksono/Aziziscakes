@@ -20,7 +20,7 @@
 
     <div class="flex gap-8 relative">
         {{-- Sidebar Filter --}}
-        <aside class="w-64 flex-shrink-0 fixed inset-y-0 left-0 z-50 bg-white shadow-2xl transform transition-transform duration-300 lg:relative lg:translate-x-0 lg:block lg:shadow-none overflow-y-auto lg:overflow-visible h-full lg:h-auto p-6 lg:p-0"
+        <aside class="w-64 flex-shrink-0 fixed inset-y-0 left-0 z-50 lg:z-0 bg-white lg:bg-transparent shadow-2xl transform transition-transform duration-300 lg:relative lg:translate-x-0 lg:block lg:shadow-none overflow-y-auto lg:overflow-visible h-full lg:h-auto p-6 lg:p-0"
                :class="filterOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'">
             <div class="flex justify-between items-center mb-6 lg:hidden">
                 <h2 class="font-bold text-[#4b2e1e] text-lg">Filter</h2>
@@ -30,13 +30,13 @@
             </div>
             <form method="GET" class="space-y-5">
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-4 text-sm">🔍 Pencarian</h3>
+                    <h3 class="font-semibold text-gray-700 mb-4 text-sm flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-[#7a4b2b]"></i> Pencarian</h3>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
                            class="w-full px-3 py-2.5 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-4 text-sm">💰 Harga</h3>
+                    <h3 class="font-semibold text-gray-700 mb-4 text-sm flex items-center gap-2"><i class="fa-solid fa-money-bill-wave text-[#7a4b2b]"></i> Harga</h3>
                     <div class="space-y-2">
                         <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Harga min"
                                class="w-full px-3 py-2 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                    <h3 class="font-semibold text-gray-700 mb-4 text-sm">🔃 Urutkan</h3>
+                    <h3 class="font-semibold text-gray-700 mb-4 text-sm flex items-center gap-2"><i class="fa-solid fa-arrow-down-short-wide text-[#7a4b2b]"></i> Urutkan</h3>
                     <select name="sort" class="w-full px-3 py-2 border border-gray-200 rounded-xl bg-white text-sm focus:outline-none focus:border-[#7a4b2b]">
                         <option value="">Terbaru</option>
                         <option value="terlaris" {{ request('sort')==='terlaris' ? 'selected' : '' }}>Terlaris</option>
