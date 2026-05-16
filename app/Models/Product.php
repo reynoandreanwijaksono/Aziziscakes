@@ -6,6 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $category_id
+ * @property int|null $brand_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
+ * @property int $price
+ * @property int|null $price_discount
+ * @property int|null $price_promo
+ * @property int $discount_percent
+ * @property int $stock
+ * @property float|string $rating
+ * @property int $review_count
+ * @property int $sold_count
+ * @property bool $is_active
+ * @property bool $is_featured
+ * @property bool $is_bestseller
+ * @property bool $is_new
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, ProductImage> $images
+ * @property-read ProductImage|null $primaryImage
+ * @method \Illuminate\Database\Eloquent\Relations\HasMany images()
+ * @method \Illuminate\Database\Eloquent\Relations\HasOne primaryImage()
+ */
 class Product extends Model
 {
     use HasFactory;
@@ -27,7 +52,40 @@ class Product extends Model
     protected static function boot()
     {
         parent::boot();
-        static::creating(fn($p) => $p->slug = Str::slug($p->name));
+
+        $generateUniqueSlug = function ($p) {
+            if (! $p->slug) {
+                $p->slug = Str::slug($p->name);
+            } else {
+                $p->slug = Str::slug($p->slug);
+            }
+
+            $originalSlug = $p->slug;
+            $slug = $originalSlug;
+            $counter = 1;
+
+            $query = static::where('slug', $slug);
+            if ($p->exists) {
+                $query->where('id', '!=', $p->id);
+            }
+
+            while ($query->exists()) {
+                $slug = $originalSlug.'-'.$counter++;
+                $query = static::where('slug', $slug);
+                if ($p->exists) {
+                    $query->where('id', '!=', $p->id);
+                }
+            }
+
+            $p->slug = $slug;
+        };
+
+        static::creating($generateUniqueSlug);
+        static::updating(function ($p) use ($generateUniqueSlug) {
+            if ($p->isDirty('name') || $p->isDirty('slug')) {
+                $generateUniqueSlug($p);
+            }
+        });
     }
 
     public function category()
@@ -40,11 +98,17 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images()
     {
         return $this->hasMany(ProductImage::class)->orderBy('sort_order');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function primaryImage()
     {
         return $this->hasOne(ProductImage::class)->where('is_primary', true);

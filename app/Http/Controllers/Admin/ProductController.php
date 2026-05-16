@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\{Product, Category, Brand, ProductImage, PriceHistory};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -102,6 +103,7 @@ class ProductController extends Controller
                 'old_price'  => $product->price,
                 'new_price'  => $validated['price'],
                 'reason'     => $request->price_change_reason ?? 'Admin update',
+                'changed_by' => Auth::id(),
             ]);
         }
 

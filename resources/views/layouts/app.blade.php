@@ -168,11 +168,11 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
             <div>
                 <h3 class="playfair text-lg mb-4 text-[#f6f1eb]">Menu</h3>
                 <div class="flex flex-col gap-2 text-sm text-white/70">
-                    <a href="{{ route('products.index') }}?category=roti-artisan" class="hover:text-white transition-colors">Artisan Bread</a>
-                    <a href="{{ route('products.index') }}?category=pastry-croissant" class="hover:text-white transition-colors">Sweet Pastry</a>
-                    <a href="{{ route('products.index') }}?category=custom-cake" class="hover:text-white transition-colors">Custom Cake</a>
-                    <a href="{{ route('products.index') }}?category=cinnamon-roll" class="hover:text-white transition-colors">Cinnamon Roll</a>
-                    <a href="{{ route('products.index') }}?category=hampers-gift" class="hover:text-white transition-colors">Hampers</a>
+                    <a href="{{ route('products.index') }}?category=roti-artisan" class="hover:text-white transition-colors">Brownies</a>
+                    <a href="{{ route('products.index') }}?category=pastry-croissant" class="hover:text-white transition-colors">Bolu</a>
+                    <a href="{{ route('products.index') }}?category=custom-cake" class="hover:text-white transition-colors">Birthday Cake</a>
+                    <a href="{{ route('products.index') }}?category=cinnamon-roll" class="hover:text-white transition-colors">Custom Cake</a>
+                    <a href="{{ route('products.index') }}?category=hampers-gift" class="hover:text-white transition-colors">Jenis Lainnya</a>
                 </div>
             </div>
             <div>

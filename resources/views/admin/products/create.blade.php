@@ -88,10 +88,11 @@
                         <div class="relative">
                             <img src="{{ asset('storage/' . $img->image) }}" class="w-20 h-20 object-cover rounded-xl" alt="Product">
                             @if($img->is_primary) <span class="absolute -top-1 -right-1 bg-[#7a4b2b] text-white text-xs px-1.5 rounded-full">★</span> @endif
-                            <form method="POST" action="{{ route('admin.products.images.destroy', $img) }}" class="mt-1">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="w-full text-xs text-red-500 hover:text-red-700">Hapus</button>
-                            </form>
+                            <button type="button"
+                                    onclick="event.preventDefault(); document.getElementById('delete-product-image-{{ $img->id }}').submit()"
+                                    class="w-full text-xs text-red-500 hover:text-red-700 mt-1">
+                                Hapus
+                            </button>
                         </div>
                         @endforeach
                     </div>
@@ -133,6 +134,14 @@
             </div>
         </div>
     </form>
+
+    @isset($product)
+        @foreach($product->images as $img)
+            <form id="delete-product-image-{{ $img->id }}" method="POST" action="{{ route('admin.products.images.destroy', $img) }}" class="hidden">
+                @csrf @method('DELETE')
+            </form>
+        @endforeach
+    @endisset
 </div>
 
 @endsection
