@@ -28,25 +28,46 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; background-color: var(--brown-main); width: 0; transition: width 0.3s ease; }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 .nav-link:hover, .nav-link.active { color: var(--brown-main); }
+@keyframes marquee {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100vw); }
+}
+.animate-marquee {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
 </style>
 @stack('styles')
 </head>
 <body>
 
 {{-- Announcement Banner --}}
-<div class="bg-[#7a4b2b] text-white py-2.5 text-xs tracking-wider w-full flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4">
-    <span class="flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> Gratis ongkir untuk pembelian min. Rp 150.000</span>
-    <span class="bg-white/20 px-2.5 py-0.5 rounded-xl font-semibold">Gunakan kode: AZIZI10</span>
-    <span>setiap hari sampai pukul 19.00</span>
+<div class="bg-[#7a4b2b] text-white py-2 text-xs tracking-wider w-full overflow-hidden relative flex items-center h-9">
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-x-3 px-4">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> Gratis ongkir untuk pembelian min. Rp 150.000</span>
+        <span class="bg-white/20 px-2.5 py-0.5 rounded-xl font-semibold">Gunakan kode: AZIZI10</span>
+        <span>setiap hari sampai pukul 19.00</span>
+    </div>
 </div>
 
 {{-- Navbar --}}
 <nav x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-[#5a3825]/10 shadow-sm">
-    <div class="max-w-7xl mx-auto px-0 py-4 flex items-center justify-between">
-        <a href="{{ route('home') }}" class="playfair text-xl md:text-2xl text-[#5a3825] font-bold z-50"><i class="fa-solid fa-cake-candles"></i> AZIZISCAKE</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between relative">
+        <a href="{{ route('home') }}" class="playfair text-xl md:text-2xl text-[#5a3825] font-bold z-50 flex items-center gap-2">
+            @php $siteLogo = \App\Models\SiteSetting::get('site_logo'); @endphp
+            @if($siteLogo)
+                <img src="{{ asset('storage/' . $siteLogo) }}" alt="Aziziscake Logo" class="h-10 md:h-14 object-contain">
+            @else
+                <i class="fa-solid fa-cake-candles"></i>
+            @endif
+            <span>AZIZISCAKE</span>
+        </a>
 
         {{-- Desktop Menu --}}
-        <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-600">
+        <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-gray-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
             <a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">Menu</a>
             <a href="{{ route('home') }}#galeri" class="nav-link">Galeri</a>
@@ -169,7 +190,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
                 <h3 class="playfair text-lg mb-4 text-[#f6f1eb]">Menu</h3>
                 <div class="flex flex-col gap-2 text-sm text-white/70">
                     <a href="{{ route('products.index') }}?category=roti-artisan" class="hover:text-white transition-colors">Brownies</a>
-                    <a href="{{ route('products.index') }}?category=pastry-croissant" class="hover:text-white transition-colors">Bolu</a>
+                    <a href="{{ route('products.index') }}?category=pastry-croissant" class="hover:text-white transition-colors">Kue Kering</a>
                     <a href="{{ route('products.index') }}?category=custom-cake" class="hover:text-white transition-colors">Birthday Cake</a>
                     <a href="{{ route('products.index') }}?category=cinnamon-roll" class="hover:text-white transition-colors">Custom Cake</a>
                     <a href="{{ route('products.index') }}?category=hampers-gift" class="hover:text-white transition-colors">Jenis Lainnya</a>
@@ -197,7 +218,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
         </div>
         <div class="border-t border-white/15 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-white/50 text-center md:text-left">
             <span>© {{ date('Y') }} Aziziscake. All rights reserved.</span>
-            <span>Dibuat dengan ❤️ di Jepara, Jawa Tengah</span>
+            <span>Dibuat dengan Cinta oleh Aziziscake di Jepara, Jawa Tengah</span>
         </div>
     </div>
 </footer>

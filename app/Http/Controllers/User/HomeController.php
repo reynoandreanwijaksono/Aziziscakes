@@ -18,9 +18,8 @@ class HomeController extends Controller
 
         $bestsellerProducts = Product::with(['primaryImage', 'category'])
             ->where('is_active', true)
-            ->where('is_bestseller', true)
             ->orderByDesc('sold_count')
-            ->take(8)->get();
+            ->take(4)->get();
 
         $newProducts = Product::with(['primaryImage', 'category'])
             ->where('is_active', true)

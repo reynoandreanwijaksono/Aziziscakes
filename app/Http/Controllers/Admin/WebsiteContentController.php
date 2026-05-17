@@ -42,11 +42,14 @@ class WebsiteContentController extends Controller
             $fields[] = "faq_{$i}_question";
             $fields[] = "faq_{$i}_answer";
         }
+        for ($i = 1; $i <= 5; $i++) {
+            $fields[] = "gallery_img_{$i}_title";
+        }
 
         $validated = $request->validate(array_fill_keys($fields, 'nullable|string'));
 
-        // Handle file uploads for hero images
-        $fileFields = ['hero_image_1', 'hero_image_2'];
+        // Handle file uploads for hero images, logo, and gallery images
+        $fileFields = ['hero_image_1', 'hero_image_2', 'site_logo', 'gallery_img_1', 'gallery_img_2', 'gallery_img_3', 'gallery_img_4', 'gallery_img_5'];
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);

@@ -34,24 +34,24 @@
 
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
         {{-- Floating Badge 1 --}}
-        <div class="absolute -top-6 -right-4 md:-right-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 animate-pulse" style="animation-duration: 3s">
-            <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full text-lg leading-none">
+        <div class="absolute -top-4 md:-top-6 -right-2 md:-right-8 bg-white px-2.5 py-1.5 md:px-4 md:py-2.5 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-1.5 md:gap-3 animate-pulse" style="animation-duration: 3s">
+            <div class="bg-yellow-100 text-yellow-600 p-2 md:p-3 rounded-full text-sm md:text-lg leading-none">
                 <i class="fa-solid fa-star"></i>
             </div>
             <div class="text-left">
-                <div class="font-bold text-[#4b2e1e] text-sm leading-tight">4.9/5.0</div>
-                <div class="text-[10px] text-gray-500">Ulasan Terbaik</div>
+                <div class="font-bold text-[#4b2e1e] text-[10px] md:text-sm leading-tight">4.9/5.0</div>
+                <div class="text-[8px] md:text-[10px] text-gray-500">Ulasan Terbaik</div>
             </div>
         </div>
 
         {{-- Floating Badge 2 --}}
-        <div class="absolute -bottom-5 -left-4 md:-left-8 bg-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
-            <div class="bg-green-100 text-green-600 p-3 rounded-full text-lg leading-none">
+        <div class="absolute -bottom-4 md:-bottom-5 -left-2 md:-left-8 bg-white px-2.5 py-1.5 md:px-3 md:py-2 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-1.5 md:gap-3">
+            <div class="bg-green-100 text-green-600 p-2 md:p-3 rounded-full text-sm md:text-lg leading-none">
                 <i class="fa-solid fa-seedling"></i>
             </div>
             <div class="text-left">
-                <div class="font-bold text-[#4b2e1e] text-sm leading-tight">100% Halal</div>
-                <div class="text-[10px] text-gray-500">Bahan Premium</div>
+                <div class="font-bold text-[#4b2e1e] text-[10px] md:text-sm leading-tight">100% Halal</div>
+                <div class="text-[8px] md:text-[10px] text-gray-500">Bahan Premium</div>
             </div>
         </div>
 
@@ -164,16 +164,30 @@
         <h2 class="playfair text-3xl md:text-4xl text-[#4b2e1e]">Galeri Kami</h2>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-auto md:h-[500px]">
+        @php
+            $img1 = $get('gallery_img_1') ? asset('storage/' . $get('gallery_img_1')) : 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600';
+            $title1 = $get('gallery_img_1_title', 'Dapur Kami');
+        @endphp
         <div class="col-span-2 md:col-span-1 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer h-[200px] md:h-auto">
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Dapur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-            <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">Dapur Kami</div>
+            <img src="{{ $img1 }}" alt="{{ $title1 }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $title1 }}</div>
         </div>
-        @foreach([['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500','Artisan Bread'],['https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500','Custom Cake'],['https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500','Sweet Pastry'],['https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500','Cinnamon Roll']] as $img)
+        @for($i = 2; $i <= 5; $i++)
+        @php
+            $defaults = [
+                2 => ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500', 'Brownies'],
+                3 => ['https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500', 'Kue Kering'],
+                4 => ['https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500', 'Custom Cake'],
+                5 => ['https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500', 'Birthday Cake']
+            ];
+            $imgUrl = $get("gallery_img_{$i}") ? asset('storage/' . $get("gallery_img_{$i}")) : $defaults[$i][0];
+            $title = $get("gallery_img_{$i}_title", $defaults[$i][1]);
+        @endphp
         <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-[150px] md:h-auto">
-            <img src="{{ $img[0] }}" alt="{{ $img[1] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-            <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $img[1] }}</div>
+            <img src="{{ $imgUrl }}" alt="{{ $title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $title }}</div>
         </div>
-        @endforeach
+        @endfor
     </div>
 </section>
 
@@ -195,7 +209,7 @@
                     $icons = ['<i class="fa-solid fa-wheat-awn"></i>', '<i class="fa-solid fa-leaf"></i>', '<i class="fa-regular fa-clock"></i>', '<i class="fa-solid fa-truck"></i>'];
                     $titles = ['Bahan Premium', '100% Alami', 'Selalu Segar', 'Pengiriman Cepat'];
                     $icon = $get("about_feature_{$index}_icon", $icons[$index - 1]);
-                    $title = $get("about_feature_{$index}_title", $titles[$index - 1]);
+                    $title = $titles[$index - 1]; // Abaikan nilai DB sementara agar emoji hilang
                     $text = $get("about_feature_{$index}_text", ['Tepung & bahan pilihan premium','100% alami, sehat & segar','Dipanggang setiap pagi pukul 5','Pengiriman dalam 2 jam'][$index - 1]);
                 @endphp
                 <div class="flex gap-3 items-start">
@@ -305,7 +319,7 @@
             <ul class="space-y-3 text-sm text-gray-600">
                 <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-location-dot"></i></span> {{ $get('contact_address', 'Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454') }}</li>
                 <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-phone"></i></span> {{ $get('contact_phone', '+62 813-9233-5843') }}</li>
-                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-envelope"></i></span> {{ $get('contact_email', 'hello@aziziscake.id') }}</li>
+                <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-brands fa-instagram"></i></span> {{ $get('social_instagram_handle', '@aziziscake') }}</li>
                 <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-regular fa-clock"></i></span> {{ $get('contact_hours', 'Buka setiap hari 06.00 – 19.00') }}</li>
                 <li class="flex items-center gap-3"><span class="text-lg w-6 text-center text-[#7a4b2b]"><i class="fa-solid fa-truck"></i></span> {{ $get('contact_note', 'Gratis ongkir min. Rp 150.000') }}</li>
             </ul>
