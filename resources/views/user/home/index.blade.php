@@ -81,22 +81,40 @@
     </div>
 </div>
 
-{{-- PROMO BANNER --}}
+{{-- WHY CHOOSE US BANNER --}}
 <div class="max-w-7xl mx-auto px-6 py-12">
-    <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 grid gap-8 sm:grid-cols-[minmax(0,1fr)_280px] items-center">
-        <div class="min-w-0">
-            <h2 class="playfair text-3xl text-white mb-2">{{ $get('promo_title', 'Promo Spesial Akhir Pekan!') }}</h2>
-            <p class="text-white/80 text-sm leading-relaxed max-w-md">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('promo_description', 'Nikmati diskon eksklusif untuk setiap pembelian Custom Cake.<br>Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.')))) !!}</p>
-            <a href="{{ $get('promo_cta_link', route('products.index')) }}"
-               class="inline-block mt-5 bg-white text-[#7a4b2b] px-7 py-3 rounded-full font-medium text-sm hover:-translate-y-1 hover:shadow-xl transition-all">
-                {{ $get('promo_cta_text', 'Pesan Sekarang →') }}
-            </a>
+    <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 relative overflow-hidden shadow-xl">
+        <div class="relative z-10">
+            <div class="text-center mb-8">
+                <h2 class="playfair text-3xl md:text-4xl text-white mb-2">Kenapa Memilih Aziziscake?</h2>
+                <p class="text-white/80 text-sm max-w-2xl mx-auto">Kami berdedikasi memberikan kualitas dan rasa terbaik pada setiap gigitan, menjadikan setiap momen berharga Anda lebih manis dan tak terlupakan.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Kualitas Premium</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Dibuat menggunakan bahan-bahan pilihan berkualitas tinggi untuk menghasilkan rasa yang mewah dan lezat.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">100% Halal & Tanpa Pengawet</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Produk kami dibuat segar setiap hari tanpa bahan pengawet buatan, sehingga aman dan sehat untuk keluarga.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Dibuat Penuh Cinta</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">Setiap kue dan roti diolah oleh baker berpengalaman dengan resep andalan yang dijaga konsistensi cita rasanya.</p>
+                </div>
+            </div>
         </div>
-        <div class="w-full sm:w-auto max-w-full bg-white/15 border-2 border-dashed border-white/50 rounded-2xl px-6 py-6 text-center text-white">
-            <div class="playfair text-5xl sm:text-6xl leading-none">{{ $get('promo_discount_label', '20%') }}</div>
-            <div class="font-medium mt-1">OFF</div>
-            <div class="text-xs opacity-80 mt-1">{{ $get('promo_discount_detail', 'Custom Cake & Hampers') }}</div>
-        </div>
+        <i class="fa-solid fa-cake-candles absolute -right-10 -top-10 text-[150px] text-white/5 transform rotate-12"></i>
+        <i class="fa-solid fa-cookie absolute -left-10 -bottom-10 text-[120px] text-white/5 transform -rotate-12"></i>
     </div>
 </div>
 

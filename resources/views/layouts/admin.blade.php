@@ -23,7 +23,15 @@ body { font-family: 'Poppins', sans-serif; }
     <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-[#4b2e1e] text-white flex flex-col flex-shrink-0 transition-transform duration-300 md:relative md:translate-x-0"
            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="p-6 border-b border-white/10">
-            <div class="playfair text-xl flex items-center gap-2"><i class="fa-solid fa-cake-candles"></i> Aziziscake</div>
+            <div class="playfair text-xl flex items-center gap-2">
+                @php $siteLogo = \App\Models\SiteSetting::get('site_logo'); @endphp
+                @if($siteLogo)
+                    <img src="{{ asset('storage/' . $siteLogo) }}" alt="Aziziscake Logo" class="h-8 object-contain">
+                @else
+                    <i class="fa-solid fa-cake-candles"></i>
+                @endif
+                Aziziscake
+            </div>
             <div class="text-xs text-white/50 mt-1">Admin Panel</div>
         </div>
 

@@ -3,10 +3,10 @@
 @section('title', 'Keranjang Belanja – Aziziscake')
 @section('content')
 <div class="max-w-5xl mx-auto px-6 py-12">
-    <h1 class="playfair text-3xl text-[#4b2e1e] mb-8">🛒 Keranjang Belanja</h1>
+    <h1 class="playfair text-3xl text-[#4b2e1e] mb-8"><i class="fa-solid fa-cart-shopping mr-2 text-[#7a4b2b]"></i> Keranjang Belanja</h1>
     @if($cartItems->isEmpty())
     <div class="text-center py-20 bg-white rounded-2xl shadow-sm">
-        <div class="text-6xl mb-4">🛒</div>
+        <div class="text-6xl mb-4 text-gray-300"><i class="fa-solid fa-cart-shopping"></i></div>
         <p class="text-gray-400 text-lg mb-4">Keranjang belanja kosong</p>
         <a href="{{ route('products.index') }}" class="bg-[#7a4b2b] text-white px-6 py-3 rounded-full text-sm hover:bg-[#5a3825]">Belanja Sekarang</a>
     </div>
@@ -31,7 +31,7 @@
                     </form>
                     <form method="POST" action="{{ route('cart.destroy', $item) }}">
                         @csrf @method('DELETE')
-                        <button class="text-red-400 hover:text-red-600 text-sm p-1">🗑️</button>
+                        <button type="submit" class="text-red-400 hover:text-red-600 text-lg p-1 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
                     </form>
                 </div>
                 <div class="text-right">

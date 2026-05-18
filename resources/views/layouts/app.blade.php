@@ -47,9 +47,9 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 {{-- Announcement Banner --}}
 <div class="bg-[#7a4b2b] text-white py-2 text-xs tracking-wider w-full overflow-hidden relative flex items-center h-9">
     <div class="animate-marquee whitespace-nowrap flex items-center gap-x-3 px-4">
-        <span class="flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> Gratis ongkir untuk pembelian min. Rp 150.000</span>
-        <span class="bg-white/20 px-2.5 py-0.5 rounded-xl font-semibold">Gunakan kode: AZIZI10</span>
-        <span>setiap hari sampai pukul 19.00</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-heart"></i> Terima kasih atas kepercayaan Anda memilih Aziziscake</span>
+        <span class="bg-white/20 px-2.5 py-0.5 rounded-xl font-semibold">Hadir mewarnai momen spesial Anda</span>
+        <span>setiap hari.</span>
     </div>
 </div>
 
@@ -256,7 +256,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--brown-light); }
 
 {{-- WhatsApp Float --}}
 <a href="https://wa.me/6281392335843?text=Halo%20Aziziscake!%20Saya%20mau%20pesan%20kue" target="_blank"
-   class="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white text-xl md:text-2xl rounded-full flex items-center justify-center shadow-xl z-30 animate-pulse hover:scale-110 transition-transform">
+   class="fixed bottom-20 md:bottom-6 right-4 md:right-6 w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white text-xl md:text-2xl rounded-full flex items-center justify-center shadow-xl z-[99] hover:scale-110 transition-transform">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
