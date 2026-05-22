@@ -19,8 +19,8 @@
                             :class="activeSection === 'hero' ? 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors bg-[#7a4b2b] text-white' : 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors text-gray-600 hover:bg-gray-100'">Bagian Hero</a>
                     </li>
                     <li>
-                        <a href="#promo-section" @click.prevent="activeSection='promo'; window.location.hash='promo-section'"
-                            :class="activeSection === 'promo' ? 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors bg-[#7a4b2b] text-white' : 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors text-gray-600 hover:bg-gray-100'">Banner Promo</a>
+                        <a href="#why-section" @click.prevent="activeSection='why'; window.location.hash='why-section'"
+                            :class="activeSection === 'why' ? 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors bg-[#7a4b2b] text-white' : 'flex items-center gap-2 rounded-2xl px-3 py-2 transition-colors text-gray-600 hover:bg-gray-100'">Kenapa Memilih Kami</a>
                     </li>
                     <li>
                         <a href="#about-section" @click.prevent="activeSection='about'; window.location.hash='about-section'"
@@ -62,7 +62,7 @@
                 <div class="flex items-center gap-3 text-sm text-[#7a4b2b]">
                     <span class="hidden sm:inline">Lompat ke:</span>
                     <a href="#hero-section" class="rounded-full border border-[#7a4b2b] px-4 py-2 hover:bg-[#7a4b2b] hover:text-white transition-colors">Hero</a>
-                    <a href="#promo-section" class="rounded-full border border-gray-200 px-4 py-2 hover:bg-gray-100 transition-colors">Promo</a>
+                    <a href="#why-section" class="rounded-full border border-gray-200 px-4 py-2 hover:bg-gray-100 transition-colors">Kenapa Memilih Kami</a>
                 </div>
             </div>
         </div>
@@ -183,44 +183,68 @@
                     </div>
                 </section>
 
-                <section id="promo-section" class="scroll-mt-24 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
+                <section id="why-section" class="scroll-mt-24 bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
                     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                         <div>
-                            <h2 class="text-xl font-semibold text-gray-900">Banner Promo</h2>
-                            <p class="mt-1 text-sm text-gray-500">Atur banner promosi yang muncul di beranda.</p>
+                            <h2 class="text-xl font-semibold text-gray-900">Kenapa Memilih Kami</h2>
+                            <p class="mt-1 text-sm text-gray-500">Atur konten untuk bagian 'Kenapa Memilih Aziziscake?' di beranda.</p>
                         </div>
-                        <span class="rounded-full border border-gray-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">Promo</span>
+                        <span class="rounded-full border border-gray-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">Why Us</span>
                     </div>
                     <div class="mt-6 grid gap-4 lg:grid-cols-2">
                         <label class="block lg:col-span-2">
-                            <span class="text-sm text-gray-600">Judul Promo</span>
-                            <input type="text" name="promo_title" value="{{ old('promo_title', $settings['promo_title'] ?? 'Promo Spesial Akhir Pekan!') }}"
+                            <span class="text-sm text-gray-600">Judul Utama</span>
+                            <input type="text" name="why_title" value="{{ old('why_title', $settings['why_title'] ?? 'Kenapa Memilih Aziziscake?') }}"
                                 class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
                         </label>
                         <label class="block lg:col-span-2">
-                            <span class="text-sm text-gray-600">Deskripsi Promo</span>
-                            <textarea name="promo_description" rows="3" class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20">{{ old('promo_description', $settings['promo_description'] ?? 'Nikmati diskon eksklusif untuk setiap pembelian Custom Cake. Terbatas hanya untuk 20 pesanan pertama setiap Sabtu & Minggu.') }}</textarea>
+                            <span class="text-sm text-gray-600">Deskripsi Utama</span>
+                            <textarea name="why_description" rows="3" class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20">{{ old('why_description', $settings['why_description'] ?? 'Kami berdedikasi memberikan kualitas dan rasa terbaik pada setiap gigitan, menjadikan setiap momen berharga Anda lebih manis dan tak terlupakan.') }}</textarea>
                         </label>
-                        <label class="block">
-                            <span class="text-sm text-gray-600">Label Diskon</span>
-                            <input type="text" name="promo_discount_label" value="{{ old('promo_discount_label', $settings['promo_discount_label'] ?? '20%') }}"
-                                class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
-                        </label>
-                        <label class="block">
-                            <span class="text-sm text-gray-600">Keterangan Diskon</span>
-                            <input type="text" name="promo_discount_detail" value="{{ old('promo_discount_detail', $settings['promo_discount_detail'] ?? 'Custom Cake & Hampers') }}"
-                                class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
-                        </label>
-                        <label class="block">
-                            <span class="text-sm text-gray-600">Teks CTA</span>
-                            <input type="text" name="promo_cta_text" value="{{ old('promo_cta_text', $settings['promo_cta_text'] ?? 'Pesan Sekarang →') }}"
-                                class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
-                        </label>
-                        <label class="block">
-                            <span class="text-sm text-gray-600">URL CTA</span>
-                            <input type="text" name="promo_cta_link" value="{{ old('promo_cta_link', $settings['promo_cta_link'] ?? route('products.index')) }}"
-                                class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
-                        </label>
+                        
+                        <div class="lg:col-span-2 grid gap-4 lg:grid-cols-3 mt-4">
+                            {{-- Card 1 --}}
+                            <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50">
+                                <h3 class="font-medium text-gray-900 mb-3 text-sm">Fitur 1</h3>
+                                <label class="block mb-3">
+                                    <span class="text-xs text-gray-600">Judul Fitur</span>
+                                    <input type="text" name="why_card_1_title" value="{{ old('why_card_1_title', $settings['why_card_1_title'] ?? 'Kualitas Premium') }}"
+                                        class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-gray-600">Deskripsi Fitur</span>
+                                    <textarea name="why_card_1_desc" rows="3" class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20">{{ old('why_card_1_desc', $settings['why_card_1_desc'] ?? 'Dibuat menggunakan bahan-bahan pilihan berkualitas tinggi untuk menghasilkan rasa yang mewah dan lezat.') }}</textarea>
+                                </label>
+                            </div>
+                            
+                            {{-- Card 2 --}}
+                            <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50">
+                                <h3 class="font-medium text-gray-900 mb-3 text-sm">Fitur 2</h3>
+                                <label class="block mb-3">
+                                    <span class="text-xs text-gray-600">Judul Fitur</span>
+                                    <input type="text" name="why_card_2_title" value="{{ old('why_card_2_title', $settings['why_card_2_title'] ?? '100% Halal & Tanpa Pengawet') }}"
+                                        class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-gray-600">Deskripsi Fitur</span>
+                                    <textarea name="why_card_2_desc" rows="3" class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20">{{ old('why_card_2_desc', $settings['why_card_2_desc'] ?? 'Produk kami dibuat segar setiap hari tanpa bahan pengawet buatan, sehingga aman dan sehat untuk keluarga.') }}</textarea>
+                                </label>
+                            </div>
+                            
+                            {{-- Card 3 --}}
+                            <div class="border border-gray-200 rounded-2xl p-4 bg-gray-50">
+                                <h3 class="font-medium text-gray-900 mb-3 text-sm">Fitur 3</h3>
+                                <label class="block mb-3">
+                                    <span class="text-xs text-gray-600">Judul Fitur</span>
+                                    <input type="text" name="why_card_3_title" value="{{ old('why_card_3_title', $settings['why_card_3_title'] ?? 'Dibuat Penuh Cinta') }}"
+                                        class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
+                                </label>
+                                <label class="block">
+                                    <span class="text-xs text-gray-600">Deskripsi Fitur</span>
+                                    <textarea name="why_card_3_desc" rows="3" class="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20">{{ old('why_card_3_desc', $settings['why_card_3_desc'] ?? 'Setiap kue dan roti diolah oleh baker berpengalaman dengan resep andalan yang dijaga konsistensi cita rasanya.') }}</textarea>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -288,7 +312,7 @@
                         @for($i = 1; $i <= 4; $i++)
                             <label class="block">
                             <span class="text-sm text-gray-600">Feature {{ $i }} Title</span>
-                            <input type="text" name="about_feature_{{ $i }}_title" value="{{ old('about_feature_'.$i.'_title', $settings['about_feature_'.$i.'_title'] ?? ['🌾','🚫','🕖','🚚'][$i-1]) }}"
+                            <input type="text" name="about_feature_{{ $i }}_title" value="{{ old('about_feature_'.$i.'_title', $settings['about_feature_'.$i.'_title'] ?? ['Bahan Lokal','Tanpa Pengawet','Cepat','Pengiriman'][$i-1]) }}"
                                 class="mt-1 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#7a4b2b] focus:ring-[#7a4b2b]/20" />
                             </label>
                             <label class="block">

@@ -1,0 +1,32 @@
+%% Flowchart pembuatan website (Mermaid)
+flowchart LR
+    Start((Mulai))
+    Req[1. Kumpulkan tujuan & requirement]
+    Spec[Spesifikasi & scope]
+    Design[2. Desain UI/UX & prototyping]
+    Approve{Desain disetujui?}
+    Env[3. Siapkan lingkungan development]
+    Frontend[4. Implementasi Frontend]
+    Backend[5. Implementasi Backend & Database]
+    API[6. Integrasi & API]
+    Test[7. Pengujian (unit / integrasi / acceptance)]
+    Pass{Lulus pengujian?}
+    Fix[Perbaikan / Bugfix]
+    Deploy[8. Deployment ke production]
+    Monitor[9. Monitoring & Maintenance]
+    End((Selesai))
+
+    Start --> Req --> Spec --> Design --> Approve
+    Approve -- Tidak --> Design
+    Approve -- Ya --> Env
+    Env --> Frontend
+    Env --> Backend
+    Frontend --> API
+    Backend --> API
+    API --> Test --> Pass
+    Pass -- Tidak --> Fix --> Frontend
+    Fix --> Backend
+    Pass -- Ya --> Deploy --> Monitor --> End
+
+    classDef decision fill:#f9f,stroke:#333,stroke-width:1px;
+    class Approve,Pass decision;

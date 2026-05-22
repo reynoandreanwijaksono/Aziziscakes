@@ -104,17 +104,18 @@ class CheckoutController extends Controller
         // Merangkai pesan WhatsApp
         $user = auth()->user();
         $invoice = $order->invoice_number ?? 'INV-' . $order->id;
-        
+
         $msg = "Halo Aziziscake! Saya ingin melanjutkan pesanan saya. 📦\n\n";
         $msg .= "*Nomor Invoice:* " . $invoice . "\n";
         $msg .= "*Nama Pemesan:* " . $user->name . "\n";
         $msg .= "*No. HP:* " . $validated['shipping_phone'] . "\n\n";
-        
+
         $msg .= "*Alamat Pengiriman:*\n";
         $msg .= $validated['shipping_address'] . "\n";
         $msg .= $validated['shipping_city'] . ", " . $validated['shipping_province'] . "\n";
         $msg .= "RT/RW: " . $validated['shipping_postal_code'] . "\n\n";
 
+        $msg .= "*Metode Pembayaran:* COD (Bayar di tempat)\n\n";
         $msg .= "*Detail Pesanan:*\n";
         foreach ($cartItems as $item) {
             $priceStr = number_format($item->product->effective_price, 0, ',', '.');
@@ -126,10 +127,10 @@ class CheckoutController extends Controller
         if (!empty($validated['notes'])) {
             $msg .= "*Catatan:* " . $validated['notes'] . "\n";
         }
-        
+
         $subtotalOrder = number_format($order->subtotal, 0, ',', '.');
-        $msg .= "*Estimasi Total:* Rp {$subtotalOrder} (belum ongkir)\n\n";
-        $msg .= "Mohon informasi ongkos kirim dan total akhirnya ya kak! 😊";
+        $msg .= "*Total:* Rp {$subtotalOrder}\n\n";
+        $msg .= "Terima kasih! 😊";
 
         $whatsappUrl = 'https://wa.me/6281392335843?text=' . rawurlencode($msg);
 
@@ -139,14 +140,7 @@ class CheckoutController extends Controller
 
     private function calculateShipping(string $courier): int
     {
-        return match ($courier) {
-            'JNE'  => 15000,
-            'JNT'  => 12000,
-            'SiCepat' => 13000,
-            'Grab' => 20000,
-            'Gojek' => 18000,
-            default => 15000,
-        };
+        return 0;
     }
 
     private function getEstimation(string $courier): string

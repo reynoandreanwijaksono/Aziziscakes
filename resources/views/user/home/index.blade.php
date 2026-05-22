@@ -4,33 +4,33 @@
 
 @section('content')
 @php
-    $get = fn($key, $default = '') => $settings[$key] ?? $default;
+$get = fn($key, $default = '') => $settings[$key] ?? $default;
 @endphp
 
 {{-- HERO --}}
 <section class="relative min-h-[70vh] md:min-h-[90vh] bg-cover bg-center flex items-center justify-center overflow-hidden"
-         style="background-image: url('{{ $get('hero_background_image', 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec') }}')">
+    style="background-image: url('{{ $get('hero_background_image', 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec') }}')">
     <div class="absolute inset-0 bg-[#fff5eb]/85 backdrop-blur-sm"></div>
 
     {{-- Floating Images --}}
     @php
-        $heroImage1 = $get('hero_image_1', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400');
-        $heroImage2 = $get('hero_image_2', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350');
+    $heroImage1 = $get('hero_image_1', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400');
+    $heroImage2 = $get('hero_image_2', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=350');
 
-        $resolveImageUrl = fn($image) => match (true) {
-            str_starts_with($image, 'http') => $image,
-            str_starts_with($image, '/storage/') => asset(ltrim($image, '/')),
-            str_starts_with($image, 'storage/') => asset($image),
-            default => asset('storage/'.$image),
-        };
+    $resolveImageUrl = fn($image) => match (true) {
+    str_starts_with($image, 'http') => $image,
+    str_starts_with($image, '/storage/') => asset(ltrim($image, '/')),
+    str_starts_with($image, 'storage/') => asset($image),
+    default => asset('storage/'.$image),
+    };
 
-        $heroImage1Url = $resolveImageUrl($heroImage1);
-        $heroImage2Url = $resolveImageUrl($heroImage2);
+    $heroImage1Url = $resolveImageUrl($heroImage1);
+    $heroImage2Url = $resolveImageUrl($heroImage2);
     @endphp
     <img src="{{ $heroImage1Url }}"
-         class="absolute left-20 bottom-20 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Roti" style="animation-duration:4s" loading="lazy">
+        class="absolute left-20 bottom-20 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Roti" style="animation-duration:4s" loading="lazy">
     <img src="{{ $heroImage2Url }}"
-         class="absolute right-24 top-28 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
+        class="absolute right-24 top-28 w-48 h-48 rounded-2xl shadow-2xl hidden lg:block animate-bounce object-cover" alt="Kue" style="animation-duration:5s;animation-delay:0.5s" loading="lazy">
 
     <div class="relative bg-white/92 p-8 md:p-12 rounded-3xl text-center max-w-lg mx-5 shadow-2xl z-10 w-full">
         {{-- Floating Badge 1 --}}
@@ -56,7 +56,7 @@
         </div>
 
         <span class="text-xs md:text-sm tracking-widest text-[#7a4b2b] font-medium">{{ $get('hero_label', '✦ Resep Rahasia Sejak 1990 ✦') }}</span>
-        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e(str_replace(['<br>', '<br/>', '<br />'], "\n", $get('hero_title', 'Freshly Baked,<br>Just for You!')))) !!}</h1>
+        <h1 class="playfair text-4xl md:text-5xl text-[#4b2e1e] mt-4 mb-4 leading-tight">{!! nl2br(e(str_replace(['<br>', '<br />', '<br />'], "\n", $get('hero_title', 'Freshly Baked,<br>Just for You!')))) !!}</h1>
         <p class="text-gray-500 text-xs md:text-sm mb-8 leading-relaxed px-2">{{ $get('hero_subtitle', 'Roti dan kue premium dibuat setiap hari dengan bahan-bahan pilihan terbaik tanpa pengawet.') }}</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a href="{{ $get('hero_primary_cta_link', route('products.index')) }}" class="w-full sm:w-auto bg-[#7a4b2b] text-white px-8 py-3 rounded-full hover:bg-[#5a3825] hover:-translate-y-0.5 transition-all text-sm font-medium">
@@ -72,7 +72,7 @@
 {{-- STATS --}}
 <div class="bg-white py-14 border-b border-gray-100">
     <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        @foreach([['3500+', 'PELANGGAN SETIA'], ['34', 'TAHUN BERPENGALAMAN'], ['50+', 'VARIAN PRODUK'], ['98%', 'KEPUASAN PELANGGAN']] as $stat)
+        @foreach([['3500+', 'PELANGGAN SETIA'], ['17', 'TAHUN BERPENGALAMAN'], ['20+', 'VARIAN PRODUK'], ['97%', 'KEPUASAN PELANGGAN']] as $stat)
         <div>
             <div class="playfair text-4xl text-[#7a4b2b] font-bold">{{ $stat[0] }}</div>
             <div class="text-xs text-gray-400 tracking-widest mt-2">{{ $stat[1] }}</div>
@@ -86,30 +86,30 @@
     <div class="bg-gradient-to-br from-[#7a4b2b] to-[#5a3825] rounded-3xl p-10 relative overflow-hidden shadow-xl">
         <div class="relative z-10">
             <div class="text-center mb-8">
-                <h2 class="playfair text-3xl md:text-4xl text-white mb-2">Kenapa Memilih Aziziscake?</h2>
-                <p class="text-white/80 text-sm max-w-2xl mx-auto">Kami berdedikasi memberikan kualitas dan rasa terbaik pada setiap gigitan, menjadikan setiap momen berharga Anda lebih manis dan tak terlupakan.</p>
+                <h2 class="playfair text-3xl md:text-4xl text-white mb-2">{{ $get('why_title', 'Kenapa Memilih Aziziscake?') }}</h2>
+                <p class="text-white/80 text-sm max-w-2xl mx-auto">{{ $get('why_description', 'Kami berdedikasi memberikan kualitas dan rasa terbaik pada setiap gigitan, menjadikan setiap momen berharga Anda lebih manis dan tak terlupakan.') }}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
                     <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
                         <i class="fa-solid fa-medal"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Kualitas Premium</h3>
-                    <p class="text-xs text-white/70 leading-relaxed">Dibuat menggunakan bahan-bahan pilihan berkualitas tinggi untuk menghasilkan rasa yang mewah dan lezat.</p>
+                    <h3 class="font-semibold mb-2">{{ $get('why_card_1_title', 'Kualitas Premium') }}</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">{{ $get('why_card_1_desc', 'Dibuat menggunakan bahan-bahan pilihan berkualitas tinggi untuk menghasilkan rasa yang mewah dan lezat.') }}</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
                     <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
                         <i class="fa-solid fa-leaf"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">100% Halal & Tanpa Pengawet</h3>
-                    <p class="text-xs text-white/70 leading-relaxed">Produk kami dibuat segar setiap hari tanpa bahan pengawet buatan, sehingga aman dan sehat untuk keluarga.</p>
+                    <h3 class="font-semibold mb-2">{{ $get('why_card_2_title', '100% Halal & Tanpa Pengawet') }}</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">{{ $get('why_card_2_desc', 'Produk kami dibuat segar setiap hari tanpa bahan pengawet buatan, sehingga aman dan sehat untuk keluarga.') }}</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center text-white hover:-translate-y-1 transition-transform">
                     <div class="w-14 h-14 mx-auto bg-white/20 rounded-full flex items-center justify-center text-2xl mb-4">
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <h3 class="font-semibold mb-2">Dibuat Penuh Cinta</h3>
-                    <p class="text-xs text-white/70 leading-relaxed">Setiap kue dan roti diolah oleh baker berpengalaman dengan resep andalan yang dijaga konsistensi cita rasanya.</p>
+                    <h3 class="font-semibold mb-2">{{ $get('why_card_3_title', 'Dibuat Penuh Cinta') }}</h3>
+                    <p class="text-xs text-white/70 leading-relaxed">{{ $get('why_card_3_desc', 'Setiap kue dan roti diolah oleh baker berpengalaman dengan resep andalan yang dijaga konsistensi cita rasanya.') }}</p>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
         <a href="{{ route('products.show', $product) }}" class="group bg-white rounded-2xl p-4 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
             <div class="relative overflow-hidden rounded-xl mb-3">
                 <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
-                     class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                    class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500">
                 @if($product->is_bestseller)
                 <span class="absolute top-2 left-2 bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-fire mr-1"></i> Terlaris</span>
                 @elseif($product->is_new)
@@ -183,29 +183,29 @@
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 h-auto md:h-[500px]">
         @php
-            $img1 = $get('gallery_img_1') ? asset('storage/' . $get('gallery_img_1')) : 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600';
-            $title1 = $get('gallery_img_1_title', 'Dapur Kami');
+        $img1 = $get('gallery_img_1') ? asset('storage/' . $get('gallery_img_1')) : 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600';
+        $title1 = $get('gallery_img_1_title', 'Dapur Kami');
         @endphp
         <div class="col-span-2 md:col-span-1 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer h-[200px] md:h-auto">
             <img src="{{ $img1 }}" alt="{{ $title1 }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
             <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $title1 }}</div>
         </div>
         @for($i = 2; $i <= 5; $i++)
-        @php
-            $defaults = [
-                2 => ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500', 'Brownies'],
-                3 => ['https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500', 'Kue Kering'],
-                4 => ['https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500', 'Custom Cake'],
-                5 => ['https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500', 'Birthday Cake']
+            @php
+            $defaults=[
+            2=> ['https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500', 'Brownies'],
+            3 => ['https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500', 'Kue Kering'],
+            4 => ['https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500', 'Custom Cake'],
+            5 => ['https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500', 'Birthday Cake']
             ];
             $imgUrl = $get("gallery_img_{$i}") ? asset('storage/' . $get("gallery_img_{$i}")) : $defaults[$i][0];
             $title = $get("gallery_img_{$i}_title", $defaults[$i][1]);
-        @endphp
-        <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-[150px] md:h-auto">
-            <img src="{{ $imgUrl }}" alt="{{ $title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-            <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $title }}</div>
-        </div>
-        @endfor
+            @endphp
+            <div class="relative rounded-2xl overflow-hidden group cursor-pointer h-[150px] md:h-auto">
+                <img src="{{ $imgUrl }}" alt="{{ $title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-[#4b2e1e]/55 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-sm tracking-widest">{{ $title }}</div>
+            </div>
+            @endfor
     </div>
 </section>
 
@@ -214,7 +214,7 @@
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
         <div class="md:w-2/5">
             <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700" alt="Bakery"
-                 class="w-full h-[450px] object-cover rounded-2xl shadow-xl">
+                class="w-full h-[450px] object-cover rounded-2xl shadow-xl">
         </div>
         <div class="md:w-3/5">
             <div class="text-xs tracking-widest text-[#7a4b2b] uppercase mb-3">{{ $get('about_label', '— Kisah Kami —') }}</div>
@@ -224,11 +224,11 @@
             <div class="grid grid-cols-2 gap-5">
                 @foreach([1,2,3,4] as $index)
                 @php
-                    $icons = ['<i class="fa-solid fa-wheat-awn"></i>', '<i class="fa-solid fa-leaf"></i>', '<i class="fa-regular fa-clock"></i>', '<i class="fa-solid fa-truck"></i>'];
-                    $titles = ['Bahan Premium', '100% Alami', 'Selalu Segar', 'Pengiriman Cepat'];
-                    $icon = $get("about_feature_{$index}_icon", $icons[$index - 1]);
-                    $title = $titles[$index - 1]; // Abaikan nilai DB sementara agar emoji hilang
-                    $text = $get("about_feature_{$index}_text", ['Tepung & bahan pilihan premium','100% alami, sehat & segar','Dipanggang setiap pagi pukul 5','Pengiriman dalam 2 jam'][$index - 1]);
+                $icons = ['<i class="fa-solid fa-wheat-awn"></i>', '<i class="fa-solid fa-leaf"></i>', '<i class="fa-regular fa-clock"></i>', '<i class="fa-solid fa-truck"></i>'];
+                $titles = ['Bahan Premium', '100% Alami', 'Selalu Segar', 'Pengiriman Cepat'];
+                $icon = $get("about_feature_{$index}_icon", $icons[$index - 1]);
+                $title = $titles[$index - 1]; // Abaikan nilai DB sementara agar emoji hilang
+                $text = $get("about_feature_{$index}_text", ['Tepung & bahan pilihan premium','100% alami, sehat & segar','Dipanggang setiap pagi pukul 5','Pengiriman dalam 2 jam'][$index - 1]);
                 @endphp
                 <div class="flex gap-3 items-start">
                     <span class="text-2xl text-[#7a4b2b] w-8 text-center">{!! $icon !!}</span>
@@ -283,7 +283,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @for($i = 1; $i <= 3; $i++)
-            <div class="bg-white rounded-2xl p-7 shadow-sm relative">
+                <div class="bg-white rounded-2xl p-7 shadow-sm relative">
                 <div class="text-8xl playfair text-[#f0e6d9] absolute -top-3 left-4 leading-none">"</div>
                 <div class="text-[#e8a33a] text-sm mb-3">
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -296,9 +296,9 @@
                         <div class="text-gray-400 text-xs">{{ $get("testimonial_{$i}_role", ['Pelanggan Setia · Jepara','Pelanggan Baru · Kudus','Pelanggan Setia · Jepara'][$i - 1]) }}</div>
                     </div>
                 </div>
-            </div>
-            @endfor
         </div>
+        @endfor
+    </div>
     </div>
 </section>
 
@@ -313,17 +313,18 @@
 
         <div class="space-y-3" x-data="{ open: null }">
             @for($i = 1; $i <= 5; $i++)
-            <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
                 <button @click="open = open === {{ $i }} ? null : {{ $i }}"
-                        class="w-full px-6 py-5 flex justify-between items-center text-left font-medium text-[#4b2e1e] text-sm hover:bg-[#fef9f5] transition-colors">
+                    class="w-full px-6 py-5 flex justify-between items-center text-left font-medium text-[#4b2e1e] text-sm hover:bg-[#fef9f5] transition-colors">
                     <span class="pr-4">{{ $get("faq_{$i}_question", ['Apakah produk bisa dipesan dalam jumlah banyak (bulk order)?','Berapa lama ketahanan produk setelah dibeli?','Apakah tersedia opsi vegan atau bebas gluten?','Bagaimana cara memesan custom cake?','Apakah ada layanan pengiriman ke luar kota?'][$i - 1]) }}</span>
                     <span class="text-[#7a4b2b] text-xl transition-transform flex-shrink-0" :class="open === {{ $i }} ? 'rotate-45' : ''">+</span>
                 </button>
                 <div x-show="open === {{ $i }}" x-transition.opacity.duration.300ms class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-                    {{ $get("faq_{$i}_answer", ['Ya, kami menerima bulk order untuk berbagai keperluan seperti acara, arisan, atau corporate gift. Hubungi kami minimal 3 hari sebelum tanggal pengiriman untuk pemesanan lebih dari 50 pcs.','Roti dan pastry kami bertahan 2–3 hari pada suhu ruang, dan hingga 7 hari jika disimpan dalam kulkas. Custom cake lebih baik dikonsumsi dalam 2 hari.','Saat ini kami memiliki pilihan vegan untuk beberapa produk pastry dan kue. Untuk opsi bebas gluten, tersedia berdasarkan permintaan khusus dengan lead time 2 hari.','Pemesanan custom cake bisa melalui WhatsApp atau langsung di website. Sertakan detail desain, ukuran, rasa, dan tanggal dibutuhkan. Kami memerlukan minimal 5 hari kerja.','Saat ini layanan pengiriman kami mencakup area Jepara, Kudus, Pati, dan sekitarnya.'][$i - 1]) }}</div>
-            </div>
-            @endfor
+                    {{ $get("faq_{$i}_answer", ['Ya, kami menerima bulk order untuk berbagai keperluan seperti acara, arisan, atau corporate gift. Hubungi kami minimal 3 hari sebelum tanggal pengiriman untuk pemesanan lebih dari 50 pcs.','Roti dan pastry kami bertahan 2–3 hari pada suhu ruang, dan hingga 7 hari jika disimpan dalam kulkas. Custom cake lebih baik dikonsumsi dalam 2 hari.','Saat ini kami memiliki pilihan vegan untuk beberapa produk pastry dan kue. Untuk opsi bebas gluten, tersedia berdasarkan permintaan khusus dengan lead time 2 hari.','Pemesanan custom cake bisa melalui WhatsApp atau langsung di website. Sertakan detail desain, ukuran, rasa, dan tanggal dibutuhkan. Kami memerlukan minimal 5 hari kerja.','Saat ini layanan pengiriman kami mencakup area Jepara, Kudus, Pati, dan sekitarnya.'][$i - 1]) }}
+                </div>
         </div>
+        @endfor
+    </div>
     </div>
 </section>
 
@@ -347,12 +348,12 @@
                 <div>
                     <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">NAMA LENGKAP</label>
                     <input type="text" id="order_name" placeholder="Contoh: Budi Santoso"
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">NO. WHATSAPP</label>
                     <input type="tel" id="order_phone" placeholder="08xx xxxx xxxx"
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
                 </div>
             </div>
             <div class="mb-4">
@@ -369,18 +370,18 @@
                 <div>
                     <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">JUMLAH</label>
                     <input type="number" id="order_qty" placeholder="1" min="1"
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
                 </div>
                 <div>
                     <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">TANGGAL DIBUTUHKAN</label>
                     <input type="date" id="order_date"
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5]">
                 </div>
             </div>
             <div class="mb-5">
                 <label class="text-xs text-gray-400 tracking-wider mb-1.5 block">CATATAN / PERMINTAAN KHUSUS</label>
                 <textarea id="order_notes" placeholder="Misalnya: tanpa gluten, desain kue, alamat pengiriman..."
-                          class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5] min-h-[100px] resize-y"></textarea>
+                    class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#7a4b2b] bg-[#faf8f5] min-h-[100px] resize-y"></textarea>
             </div>
             <button onclick="handleOrder()" class="w-full bg-[#7a4b2b] text-white py-4 rounded-full font-medium hover:bg-[#5a3825] hover:-translate-y-0.5 hover:shadow-lg transition-all">
                 Kirim Pesanan via WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
@@ -401,20 +402,20 @@
             <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-lg max-w-md w-full hover:-translate-y-1 hover:shadow-xl transition-all">
                 <div class="relative h-48 overflow-hidden">
                     <img src="https://lh3.googleusercontent.com/places/ANXAkqEwdCFzII7zLl3xyetzHn1sFTEwxHtuejIvIQhW-e60FRIWbU6JabkNqDEoP_Y2bh5lMto5o_QFeCkwcEscsaUUHx0wlbAJpAk=s4800-w800-h600"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Azizi Cake">
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Azizi Cake">
                     <div class="absolute top-3 right-3 bg-white/92 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#4b2e1e]"><i class="fa-solid fa-star text-yellow-500 mr-1"></i> 4.0 · Aziziscake</div>
                 </div>
                 <div class="p-5">
                     <h3 class="font-semibold text-[#4b2e1e]">Azizi Cake Bakery – Jepara</h3>
-                    <p class="text-xs text-gray-400 mt-1 leading-relaxed">📍 RT.5/RW.5, Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454</p>
+                    <p class="text-xs text-gray-400 mt-1 leading-relaxed"><i class="fa-solid fa-location-dot mr-1"></i> RT.5/RW.5, Bucu, Kec. Kembang, Kabupaten Jepara, Jawa Tengah 59454</p>
                     <div class="flex flex-wrap gap-2 mt-3 mb-4">
                         <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> Buka 06.00–19.00</span>
                         <span class="bg-[#fef3ec] text-[#7a4b2b] text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-cake-candles mr-1"></i> Cake & Bakery</span>
                     </div>
-                        <a href="https://maps.google.com/?cid=16829235595524921551" target="_blank"
-                           class="block w-full bg-[#7a4b2b] text-white text-sm py-2.5 rounded-xl text-center hover:bg-[#5a3825] transition-colors">
-                            <i class="fa-solid fa-map-location-dot mr-1"></i> Buka Maps
-                        </a>
+                    <a href="https://maps.google.com/?cid=16829235595524921551" target="_blank"
+                        class="block w-full bg-[#7a4b2b] text-white text-sm py-2.5 rounded-xl text-center hover:bg-[#5a3825] transition-colors">
+                        <i class="fa-solid fa-map-location-dot mr-1"></i> Buka Maps
+                    </a>
                 </div>
             </div>
         </div>
@@ -425,25 +426,27 @@
 
 @push('scripts')
 <script>
-function handleOrder() {
-    const name = document.getElementById('order_name').value.trim();
-    const phone = document.getElementById('order_phone').value.trim();
-    const product = document.getElementById('order_product').value;
-    const qty = document.getElementById('order_qty').value || '1';
-    const date = document.getElementById('order_date').value;
-    const notes = document.getElementById('order_notes').value;
+    function handleOrder() {
+        const name = document.getElementById('order_name').value.trim();
+        const phone = document.getElementById('order_phone').value.trim();
+        const product = document.getElementById('order_product').value;
+        const qty = document.getElementById('order_qty').value || '1';
+        const date = document.getElementById('order_date').value;
+        const notes = document.getElementById('order_notes').value;
 
-    if (!name || !phone || !product) {
-        alert('Mohon lengkapi nama, nomor WhatsApp, dan produk yang dipesan.');
-        return;
-    }
+        if (!name || !phone || !product) {
+            alert('Mohon lengkapi nama, nomor WhatsApp, dan produk yang dipesan.');
+            return;
+        }
 
-    let msg = `Halo Aziziscake! Saya ${name} ingin pesan:\n\nProduk: ${product}\nJumlah: ${qty}`;
-    if (date) msg += `\nTanggal dibutuhkan: ${date}`;
-    if (notes) msg += `\nCatatan: ${notes}`;
-    msg += `\n\nNo. WA: ${phone}\n\nMohon konfirmasi ketersediaan ya! 😊`;
+        let msg = `Halo Aziziscake! Saya ${name} ingin pesan:\n\nProduk: ${product}\nJumlah: ${qty}`;
+        if (date) msg += `\nTanggal dibutuhkan: ${date}`;
+        if (notes) msg += `\nCatatan: ${notes}`;
+        msg += `\n\nNo. WA: ${phone}\n\nMohon konfirmasi ketersediaan ya! 😊`;
 
-    window.open('{{ $get('social_whatsapp', 'https://wa.me/6281392335843') }}?text=' + encodeURIComponent(msg), '_blank');
-}
+        window.open('{{ $get('
+            social_whatsapp ', '
+            https: //wa.me/6281392335843') }}?text=' + encodeURIComponent(msg), '_blank');
+        }
 </script>
 @endpush

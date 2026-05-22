@@ -33,7 +33,7 @@ body { font-family:'Poppins',sans-serif; background:#f6f1eb; min-height:100vh; d
 <body>
 <div class="auth-container">
     <div class="auth-logo">
-        <span>🎂 Aziziscake</span>
+        <span><i class="fa-solid fa-cake-candles"></i> Aziziscake</span>
         <p>Toko Roti & Kue Premium Jepara</p>
     </div>
 

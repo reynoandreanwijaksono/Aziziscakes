@@ -111,7 +111,7 @@
                             class="px-4 py-3 text-gray-500 hover:bg-gray-50 transition-colors">+</button>
                 </div>
                 <button type="submit" class="flex-1 bg-[#7a4b2b] text-white py-3 rounded-xl font-medium hover:bg-[#5a3825] transition-colors text-sm">
-                    🛒 Tambah ke Keranjang
+                    <i class="fa-solid fa-cart-shopping mr-2"></i> Tambah ke Keranjang
                 </button>
             </form>
             @else
@@ -126,7 +126,7 @@
             <a href="https://wa.me/6281392335843?text=Halo%20Aziziscake!%20Saya%20tertarik%20dengan%20{{ urlencode($product->name) }}"
                target="_blank"
                class="mt-3 flex items-center justify-center gap-2 border border-gray-200 text-gray-600 py-3 rounded-xl text-sm hover:bg-gray-50 transition-colors">
-                💬 Tanya via WhatsApp
+                <i class="fa-brands fa-whatsapp mr-2"></i> Tanya via WhatsApp
             </a>
         </div>
     </div>
